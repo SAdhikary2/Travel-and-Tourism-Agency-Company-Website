@@ -42,14 +42,22 @@ nav img {
 
 .nav-links {
   padding: 10px 30px;
+  
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #fff;
+ color: #fff;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
+
+
 }
+.nav-links a:hover{
+color: red;
+
+}
+
 
 /* NAVBER RESPONSIVE */
 label #btn,
@@ -1026,3 +1034,15 @@ footer .flex:last-child a:hover {
     flex: 1 1 100%;
   }
 }
+
+.nav-link{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff !important;
+}
+
+.nav-link:hover{
+color: red !important;
+}
+
+   
