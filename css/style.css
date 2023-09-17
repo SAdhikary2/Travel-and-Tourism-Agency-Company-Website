@@ -18,10 +18,10 @@ body {
 nav {
   height: 100px;
   width: 100%;
-  background-color: #292727;
+  background-color: #343333;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 0 50px;
   z-index: 99;
 
@@ -30,7 +30,7 @@ nav {
 
 nav img {
   height: 100px;
-  left: -50%;
+ 
 }
 
 .nav-menu {
@@ -125,20 +125,47 @@ label #cancel {
     display: block;
   }
 }
+/* 
+.login-section{
+  margin-left: 100px;
+} */
 
-.login-section i {
-  font-size: 1.5rem;
-  padding: 0 10px;
+
+
+.login-section{
+  margin-bottom: 13px;
+  padding: 10px;
 }
 
 .login-section a {
   text-decoration: none;
 }
 
-.login-section a u {
-  color: #fff;
+
+
+.login-section a  {
+  color:red;
   font-size: 1rem;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 20px;
 }
+
+.login-section a:hover{
+  color:white;
+  border: 2px solid red;
+}
+
+.login-section button{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 
 video {
   height: 100%;
