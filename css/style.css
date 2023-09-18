@@ -279,6 +279,11 @@ video {
   z-index: 10;
 }
 
+
+
+
+
+
 #page1 h1 {
   font-size: 6vw;
   font-weight: 900;
@@ -424,7 +429,7 @@ box-shadow: 5px 5px 5px rgb(69, 68, 68);
 
 input,
 .date,
-.book {
+.searchBox {
   padding: 15px;
   margin-right: 10px;
   font-size: 18px;
@@ -444,23 +449,24 @@ input {
   flex: 1;
 }
 
-.book {
+.searchBox {
   width: 20%;
   flex: 1;
 }
 
-.book {
+.searchBox {
   text-decoration: none;
-  color: #000;
+  color:#fff;
+  font-weight: 900 !important;
   text-transform: uppercase;
   padding: 15px;
   cursor: pointer;
-  background-color: #FDE02F;
+  background-color:red;
   font-size: 16px;
   font-weight: normal;
-  font-family: "Barlow Condensed";
   width: 20%;
 }
+
 
 
 
@@ -759,10 +765,12 @@ color-black: #000; */
 
 .form-main {
   background: linear-gradient(to bottom, #00000024, #00000024),
-    url("/Images/tra.jpg") no-repeat center;
+    url("/Images/backgroundcontact.jpg") no-repeat center;
   background-size: cover;
   min-height: 50vh;
   display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
 
   /* flex-direction: column; */
   align-items: center;
@@ -1004,6 +1012,11 @@ input,
 textarea,
 select {
   outline: none !important;
+
+}
+
+.form-card input{
+  border: 1px solid rgb(112, 110, 110);
 }
 
 fieldset {
