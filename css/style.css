@@ -360,7 +360,7 @@ video {
   filter: blur(20px);
   z-index: 9;
 }
-
+/* 
 #search-input {
   width: 400px;
   height: 40px;
@@ -398,7 +398,71 @@ video {
   #search button {
     margin-top: 20px;
   }
+} */
+
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+
+  border-radius: 20px;
+  width: 70%;
+  padding: 1% 2%;
+  gap: 10px;
+  position: absolute;
+  height: 170px;
+  margin-top: 70vh;
+box-shadow: 5px 5px 5px rgb(69, 68, 68);
+ 
+  
 }
+
+input,
+.date,
+.book {
+  padding: 15px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-family: Roboto;
+  border-radius: 5px;
+  outline: 0;
+  border: none;
+}
+
+input {
+  width: 50%;
+  flex: 2;
+}
+
+.date {
+  width: 20%;
+  flex: 1;
+}
+
+.book {
+  width: 20%;
+  flex: 1;
+}
+
+.book {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #FDE02F;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Barlow Condensed";
+  width: 20%;
+}
+
+
 
 .container {
   display: grid;
