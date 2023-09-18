@@ -45,6 +45,17 @@ nav img {
   
 }
 
+.nav-link{
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff !important;
+}
+
+.nav-link:hover{
+color: red !important;
+}
+
+
 .nav-links a {
   text-decoration: none;
  color: #fff;
@@ -56,6 +67,79 @@ nav img {
 .nav-links a:hover{
 color: red;
 
+}
+
+/* MEGA DROPDOWN  */
+.mega-grid{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
+ 
+ 
+
+}
+
+
+
+ .mega-drop{
+ 
+  position: absolute;
+  /* left: 0; */
+  left: 170px;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  top: 10rem;
+  transition: all .3s linear;
+}
+.mega-child-div{
+  padding: .5rem;
+  /* border-right: .1rem solid black; */
+  background-color: #f7efef !important;
+  text-align:start;
+  box-shadow: 10px 10px 10px rgb(120, 116, 116);
+ 
+
+  
+}
+
+.nav-links:hover .mega-drop{
+  visibility: visible;
+  opacity: 1;
+  top: 4rem;
+}
+
+.mega-links li {
+  list-style: none;
+  margin-right: 30px !important;
+ width: 100%;
+ 
+}
+
+
+
+
+
+.mega-links li a{
+  color: #000;
+  font-weight: 300 !important;
+  font-size: 1rem !important;
+
+}
+
+
+.mega-child-div p{
+  color:red;
+  /* margin-left: 10px; */
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 500;
+  border-bottom: 1px solid black;
+  border-radius:10px ;
+  box-shadow: 5px 5px 5px grey;
 }
 
 
@@ -1062,14 +1146,7 @@ footer .flex:last-child a:hover {
   }
 }
 
-.nav-link{
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff !important;
-}
-
-.nav-link:hover{
-color: red !important;
-}
 
    
+
+
