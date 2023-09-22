@@ -1,19 +1,19 @@
 //   Scrollling animation for navber
 
-// gsap.to("#nav", {
-//   backgroundColor: "#fff",
-//   color: "#000",
-//   duration: 1,
-//   height: "100px",
-//   scrollTrigger: {
-//     trigger: "#nav",
-//     scroller: "body",
+gsap.to("nav", {
+  backgroundColor: "#000",
+  
+  duration: 1,
+  height: "80px",
+  scrollTrigger: {
+    trigger: "nav",
+    scroller: "body",
 
-//     start: "top -10%",
-//     end: "top -10%",
-//     scrub: 3,
-//   },
-// });
+    start: "top -10%",
+    end: "top -10%",
+    scrub: 3,
+  },
+});
 
 gsap.to("#main", {
   backgroundColor: "#000",

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Indian Train Availability</title>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#availability {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+</style>
+
+
+</head>
+<body>
+    <h1>Indian Train Availability</h1>
+    <div class="container">
+        <label for="from">From:</label>
+        <input type="text" id="from" placeholder="Enter departure station">
+        <label for="to">To:</label>
+        <input type="text" id="to" placeholder="Enter destination station">
+        <label for="date">Date of Travel:</label>
+        <input type="date" id="date">
+        <button id="checkAvailability">Check Availability</button>
+    </div>
+    <div id="availability"></div>
+   
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const checkAvailabilityButton = document.getElementById("checkAvailability");
+    const fromInput = document.getElementById("from");
+    const toInput = document.getElementById("to");
+    const dateInput = document.getElementById("date");
+    const availabilityDiv = document.getElementById("availability");
+
+    checkAvailabilityButton.addEventListener("click", function () {
+        const fromStation = fromInput.value;
+        const toStation = toInput.value;
+        const travelDate = dateInput.value;
+
+        // Make an API request to get train availability data (replace with actual API URL)
+        // Include your API key or authentication token in the request headers
+        // Example using fetch API:
+        fetch(`https://example.com/api/train-availability?from=${fromStation}&to=${toStation}&date=${travelDate}`, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer YOUR_API_KEY"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the availability data on the page
+            availabilityDiv.innerHTML = `<h2>Train Availability from ${fromStation} to ${toStation} on ${travelDate}:</h2>`;
+            availabilityDiv.innerHTML += "<ul>";
+            data.forEach(train => {
+                availabilityDiv.innerHTML += `<li>${train.name} - Available: ${train.availableSeats}</li>`;
+            });
+            availabilityDiv.innerHTML += "</ul>";
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            availabilityDiv.innerHTML = "An error occurred while fetching data. Please try again later.";
+        });
+    });
+});
+
+
+</script>
+
+</body>
+</html>
