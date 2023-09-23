@@ -549,7 +549,7 @@ input {
 
 .card-section {
   display: flex;
-  width: 95%;
+  width: 90%;
   margin: auto;
   gap: 10px;
   /* height: 300px; */
@@ -564,7 +564,9 @@ input {
   align-items: center;
   justify-content: flex-end;
   height: 300px;
+  box-shadow: 5px 5px 5px rgb(57, 55, 55);
 }
+
 
 .card img {
   height: 100%;
@@ -578,7 +580,7 @@ input {
 }
 
 .card-body h2 {
-  font-size: 3vw !important;
+  font-size: 2vw !important;
   position: relative;
 }
 .card-body p {
@@ -648,8 +650,8 @@ summary {
 }
 
 .card1:hover {
-  background-color: #df6329;
-  color: white;
+  background-color:rgb(172, 48, 48);
+  color:#fff;
   transition: 0.5s ease-in;
 }
 
