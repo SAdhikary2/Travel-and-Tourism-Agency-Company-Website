@@ -38,3 +38,43 @@ document.addEventListener("mousemove", function (dets) {
   blur.style.left = dets.x - 50 + "px";
   blur.style.top = dets.y - 50 + "px";
 });
+
+
+// javascript for search bar
+document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var searchQuery = document.getElementById("searchInput").value;
+          // window.location.href = 'International Holiday/Austrelia Tour.html?query=';
+
+          switch (searchQuery.toLowerCase()) {
+            case "austrelia":
+              window.location.href =
+                "International Holiday/Austrelia Tour.html?query=austrelia";
+              break;
+
+            case "canada":
+              window.location.href =
+                "International Holiday/Canada Tour.html?query=canada";
+              break;
+
+              case "europe":
+              window.location.href =
+                "International Holiday/Europe Tour.html?query=canada";
+              break;
+
+              case "south africa":
+              window.location.href =
+                "International Holiday/South Africa Tour.html?query=canada";
+              break;
+
+              case "america":
+              window.location.href =
+                "International Holiday/America Tour Package.html?query=canada";
+              break;
+
+            default:
+              window.location.href = "pge not found";
+          }
+        });

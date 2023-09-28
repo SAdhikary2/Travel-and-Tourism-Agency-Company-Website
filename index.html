@@ -12,6 +12,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
 
     <!-- FONT AWESOME CDN  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -48,11 +49,11 @@
                 <div class="mega-child-div">
                   <p>INTERNATIONAL DESTINATIONS</p>
                   <ul class="mega-links">
-                    <li><a href="#">Australia</a></li>
-                    <li><a href="#">Canada</a></li>
-                    <li><a href="#">Europe</a></li>
-                    <li><a href="#">South Africa</a></li>
-                    <li><a href="#">USA</a></li>
+                    <li><a href="International Holiday/Austrelia Tour.html">Australia</a></li>
+                    <li><a href="International Holiday/Canada Tour.html">Canada</a></li>
+                    <li><a href="International Holiday/Europe Tour.html">Europe</a></li>
+                    <li><a href="International Holiday/South Africa Tour.html">South Africa</a></li>
+                    <li><a href="International Holiday/America Tour Package.html">America</a></li>
                   </ul>
                 </div>
               </div>
@@ -119,8 +120,8 @@
 
        
 
-        <form class="form">
-          <input type="text" list="mylist" placeholder="Search Destination by Name">
+        <form class="form" id="searchForm">
+          <input type="text" list="mylist" placeholder="Search Destination by Name" id="searchInput">
           <datalist id="mylist">
               <option>London</option>
               <option>Canada</option>
@@ -131,7 +132,7 @@
               <option>Seoul</option>
           </datalist>
           <input type="date" class="date">
-          <a href="#" class="searchBox">Search</a>
+          <button type="submit" class="searchBox">Search</button>
       </form>
 
 
