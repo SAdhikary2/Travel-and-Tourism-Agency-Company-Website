@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us </title>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.card {
+  background-color: #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.left {
+  width: 25vw;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.left img {
+  width: 80%;
+  height: 500px;
+  object-fit: cover;
+  transform: scale(1.5);
+}
+
+
+
+.form input, textarea {
+  width: 100%;
+  outline: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #000;
+  padding: 10px 0;
+  margin: 5px 0;
+}
+.right{
+    width: 300px;
+    position: relative;
+}
+.usersubmit input {
+  background-color: #f25;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  width: min-content;
+  padding: 15px;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.usersubmit input:hover {
+  background-color: #f45;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h4 {
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .left {
+    width: 85%;
+    margin: auto;
+    height: 40vh;
+    position: relative;
+  }
+
+  .left img{
+    transform: scale(1.5);
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .container {
+    overflow: hidden;
+   
+  }
+
+
+  .left {
+    height: 40vh;
+    width: 90%;
+    margin: auto;
+  }
+  .contact {
+    flex-direction: column;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="card">
+          <div class="left">
+            <img src="/Images/contctUsImage.jpg">
+          </div>
+          <div class="right">
+            <h2>Contact Us</h2>
+            <div class="contact">
+              <div class="form-container">
+                <form class="form">
+                  <div class="username">
+                    <input type="text" placeholder="Enter your Name">
+                  </div>
+                  <div class="useremail">
+                    <input type="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="usermessage">
+                    <textarea placeholder="Enter your message" required></textarea>
+                  </div>
+                  <div class="usersubmit">
+                    <input type="submit" value="Contact Us">
+                  </div>
+                </form>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>

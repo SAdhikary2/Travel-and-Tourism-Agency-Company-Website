@@ -69,13 +69,16 @@ app.get('/andaman',(req,res)=>{
     res.render('andaman')
 })
 
+app.get('/contact',(req,res)=>{
+    res.render('contact')
+})
 
 
 
 
 
 app.get('*',(req,res)=>{
-    res.send(`<h1>Page not found</h1>`)
+    res.send(`<h1>Page not found so what can i do</h1>`)
 })
 
 
