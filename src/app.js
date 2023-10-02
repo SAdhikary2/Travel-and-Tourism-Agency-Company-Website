@@ -33,8 +33,8 @@ app.get('/andaman',(req,res)=>{
     res.render('andaman')
 })
 
-app.get('../gujrat',(req,res)=>{
-    res.render('andaman')
+app.get('/gujrat',(req,res)=>{
+    res.render('gujrat')
 })
 
 

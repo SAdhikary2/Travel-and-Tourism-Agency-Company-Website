@@ -4,278 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rajasthan Tour Packages</title>
+  <title>Andaman Tour Packages</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <!-- Font Awesome CSS (for icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" href="/airplane.png" type="logo">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
+<link rel="stylesheet" href="css/navstyle.css">
 </head>
 <style>
-  nav {
-    height: 100px;
-    width: 100%;
-    background-color: #343333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-    z-index: 99;
-    /* position: fixed; */
-
-
-  }
-
-
-
-
-
-
-
-  nav img {
-    height: 100px;
-
-  }
-
-  .nav-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-  }
-
-  .nav-links {
-    padding: 10px 30px;
-
-  }
-
-  .nav-link {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff !important;
-  }
-
-  .nav-link:hover {
-    color: red !important;
-  }
-
-
-  .nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-
-
-  }
-
-  .nav-links a:hover {
-    color: red;
-
-  }
-
-  /* MEGA DROPDOWN  */
-  .mega-grid {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
-
-
-
-  }
-
-
-
-  .mega-drop {
-
-    position: absolute;
-    /* left: 0; */
-    left: 170px;
-    transform: translateX(-50%);
-    visibility: hidden;
-    opacity: 0;
-    top: 10rem;
-    transition: all .3s linear;
-  }
-
-  .mega-child-div {
-    padding: .5rem;
-    /* border-right: .1rem solid black; */
-    background-color: #f7efef !important;
-    text-align: start;
-    box-shadow: 10px 10px 10px rgb(120, 116, 116);
-
-
-
-  }
-
-  .nav-links:hover .mega-drop {
-    visibility: visible;
-    opacity: 1;
-    top: 4rem;
-  }
-
-  .mega-links li {
-    list-style: none;
-    margin-right: 30px !important;
-    width: 100%;
-
-  }
-
-
-
-
-
-  .mega-links li a {
-    color: #000;
-    font-weight: 300 !important;
-    font-size: 1rem !important;
-
-  }
-
-
-  .mega-child-div p {
-    color: red;
-    /* margin-left: 10px; */
-    text-align: center;
-    font-size: .8rem;
-    font-weight: 500;
-    border-bottom: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
-  }
-
-
-  /* NAVBER RESPONSIVE */
-  label #btn,
-  label #cancel {
-    color: white;
-    font-size: 30px;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
-    display: none;
-  }
-
-  #check {
-    display: none;
-  }
-
-  @media screen and (max-width: 1078px) {
-    nav {
-      height: 70px;
-      justify-content: space-between;
-      flex-direction: row-reverse;
-    }
-
-    label #btn {
-      display: block;
-    }
-
-    .nav-menu {
-      display: none;
-    }
-
-    nav img {
-      height: 50px;
-    }
-  }
-
-  @media screen and (max-width: 1074px) {
-    .nav-menu {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #34495e;
-      top: 70px;
-      left: -100%;
-      text-align: center;
-      display: block;
-      transition: all 0.2s;
-    }
-
-    nav ul li {
-      margin: 20px 0;
-    }
-
-    .nav-menu li a {
-      font-size: 25px;
-    }
-
-    #check:checked~ul {
-      left: 0;
-    }
-
-    #check:checked~label #btn {
-      display: none;
-    }
-
-    #check:checked~label #cancel {
-      display: block;
-    }
-  }
-
-  /* 
-.login-section{
-  margin-left: 100px;
-} */
-
-
-
-  .login-section {
-    margin-bottom: 13px;
-    padding: 10px;
-  }
-
-  .login-section a {
-    text-decoration: none;
-  }
-
-
-
-  .login-section a {
-    color: red;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 8px 10px;
-    border-radius: 20px;
-  }
-
-  .login-section a:hover {
-    color: white;
-    border: 2px solid red;
-  }
-
-  .login-section button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 700;
-  }
-
-
-
-  /* .searchbar{
-    width: 100%;
-    height: 100px;
-    background-color: red;
-  
-   
-} */
-
-
-
-
-
   .card-img {
     max-width: 100%;
     height: auto;
@@ -331,13 +69,9 @@
     }
   }
 
-  nav {
-    position: sticky;
-  }
+ 
 
-  .rajastan {
-    margin-top: 100px !important;
-  }
+
 </style>
 
 <body>
@@ -355,20 +89,20 @@
 
 
 
-  <div class="container mt-5 rajastan">
-    <div class="d-flex pb-4">
+  <div class="container mt-3 ">
+    <div class="d-flex pb-4 ">
       <h2>Andaman Tour Packages</h2>
       <!-- <span class="ms-4 pt-2"> | 5 Packages</span> -->
     </div>
   </div>
   <!-- Card 1 -->
-  <div class="container-xxl mt-5">
+  <div class="container-xxl mt-2">
     <div class="row mb-2">
       <div class="col-md-8">
         <div class="card h-100">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="andaman img/Andaman-1.jpg" class="img-fluid card-img" alt="...">
+              <img src="Indian Holiday/andaman img/Andaman-1.jpg" class="img-fluid card-img" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -453,7 +187,7 @@
         <div class="card h-100">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="andaman img/Andaman-2.jpg" class="img-fluid card-img" alt="...">
+              <img src="Indian Holiday/andaman img/Andaman-2.jpg" class="img-fluid card-img" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -533,7 +267,7 @@
         <div class="card h-100">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="andaman img/Andaman-3.jpg" class="img-fluid card-img" alt="...">
+              <img src="Indian Holiday/andaman img/Andaman-3.jpg" class="img-fluid card-img" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -613,7 +347,7 @@
         <div class="card h-100">
           <div class="row g-0">
             <div class="col-md-4 ">
-              <img src="andaman img/Andaman-4.jpg" class="img-fluid card-img " alt="...">
+              <img src="Indian Holiday/andaman img/Andaman-4.jpg" class="img-fluid card-img " alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -693,7 +427,7 @@
         <div class="card h-100">
           <div class="row g-0">
             <div class="col-md-4 ">
-              <img src="andaman img/Andaman-5.jpg" class="img-fluid card-img" alt="...">
+              <img src="Indian Holiday/andaman img/Andaman-5.jpg" class="img-fluid card-img" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
