@@ -33,45 +33,10 @@ app.get('/andaman',(req,res)=>{
     res.render('andaman')
 })
 
-app.get('/rajasthan',(req,res)=>{
-    res.render('rajasthan')
-})
-
-app.get('/jammu',(req,res)=>{
-    res.render('jammu')
-})
-
-app.get('/gujrat',(req,res)=>{
-    res.render('gujrat')
-})
-
-app.get('/kerala',(req,res)=>{
-    res.render('kerala')
-})
-
-app.get('/andaman',(req,res)=>{
+app.get('../gujrat',(req,res)=>{
     res.render('andaman')
 })
 
-app.get('/andaman',(req,res)=>{
-    res.render('andaman')
-})
-
-app.get('/andaman',(req,res)=>{
-    res.render('andaman')
-})
-
-app.get('/andaman',(req,res)=>{
-    res.render('andaman')
-})
-
-app.get('/andaman',(req,res)=>{
-    res.render('andaman')
-})
-
-app.get('/contact',(req,res)=>{
-    res.render('contact')
-})
 
 
 
