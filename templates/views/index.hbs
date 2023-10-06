@@ -6,12 +6,20 @@
     <link rel="shortcut icon" href="/Images/favicon-32x32.png" type="image/x-icon">
     <title>Explore</title>
     <link rel="stylesheet" href="/css/style.css" />
+    
 
 
     <!-- BOOTSTRAP CDN  -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+     
     
 
     <!-- FONT AWESOME CDN  -->
@@ -65,6 +73,7 @@
        
 
         <form class="form" id="searchForm">
+          
           <input type="text" list="mylist" placeholder="Search Destination by Name" id="searchInput">
           <datalist id="mylist">
               <option>London</option>
@@ -75,9 +84,14 @@
               <option>Switzerland</option>
               <option>Seoul</option>
           </datalist>
+         
           <input type="date" class="date">
+           
           <button type="submit" class="searchBox">Search</button>
       </form>
+
+
+
 
 
 
@@ -86,7 +100,7 @@
       <div id="page2">
         <div class="card-slider">
           <h2>Top Destinations</h2>
-          <div class="container">
+          <div class="container-card">
             <div class="slide-container">
               <div class="slide-image">
                 <img src="/Images/Goa.jpg" alt="" />
@@ -222,8 +236,8 @@
             </details>
           </div>
 
-          <div class="card-section">
-            <div class="card" style="width: 18rem">
+       <div class="card-section">
+            <div class="card" >
               <img src="/Images/andaman.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>ANDAMAN</h2>
@@ -232,7 +246,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/Kerala.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>KERALA</h2>
@@ -241,7 +255,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/ImageS/Shillong.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>SHILLONG</h2>
@@ -250,7 +264,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/Goa.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>GOA</h2>
@@ -259,7 +273,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/Manali.jpg" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>MANALI</h2>
@@ -288,7 +302,7 @@
           </div>
 
           <div class="card-section">
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/singapore.webp" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>SINGAPORE</h2>
@@ -297,7 +311,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/switzerland.webp" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>SWITZERLAND</h2>
@@ -306,7 +320,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img
                 src="/Images/paris.webp"
                 class="card-img-top"
@@ -319,7 +333,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/dubai.webp" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>DUBAI</h2>
@@ -328,7 +342,7 @@
               </div>
             </div>
 
-            <div class="card" style="width: 18rem">
+            <div class="card" >
               <img src="/Images/rome.webp" class="card-img-top" alt="..." />
               <div class="card-body">
                 <h2>ROME</h2>

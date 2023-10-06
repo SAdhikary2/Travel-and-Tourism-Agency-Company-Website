@@ -28,6 +28,8 @@ nav {
   z-index: 99;
 
   position: fixed;
+  border-bottom: 1px solid #adaaaa;
+  box-shadow: 2px 2px 10px #adaaaa;
 }
 
 nav img {
@@ -71,78 +73,13 @@ color: red;
 
 }
 
-/* MEGA DROPDOWN  */
-.mega-grid{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
- 
- 
 
+
+.dropdown-menu> li> a:hover{
+  background-color:red !important;
 }
 
 
-
- .mega-drop{
- 
-  position: absolute;
-  /* left: 0; */
-  left: 170px;
-  transform: translateX(-50%);
-  visibility: hidden;
-  opacity: 0;
-  top: 10rem;
-  transition: all .3s linear;
-}
-.mega-child-div{
-  padding: .5rem;
-  /* border-right: .1rem solid black; */
-  background-color: #f7efef !important;
-  text-align:start;
-  box-shadow: 10px 10px 10px rgb(120, 116, 116);
- 
-
-  
-}
-
-.nav-links:hover .mega-drop{
-  visibility: visible;
-  opacity: 1;
-  top: 4rem;
-}
-
-.mega-links li {
-  list-style: none;
-  margin-right: 30px !important;
- width: 100%;
- 
-}
-
-
-
-
-
-.mega-links li a{
-  color: #000;
-  font-weight: 300 !important;
-  font-size: 1rem !important;
-
-}
-
-
-.mega-child-div p{
-  color:red;
-  /* margin-left: 10px; */
-  text-align: center;
-  font-size: .8rem;
-  font-weight: 500;
-  border-bottom: 1px solid black;
-  border-radius:10px ;
-  box-shadow: 5px 5px 5px grey;
-}
 
 
 /* NAVBER RESPONSIVE */
@@ -158,14 +95,21 @@ label #cancel {
 }
 #check {
   display: none;
+  
 }
 
-@media screen and (max-width: 1078px) {
+@media screen and (max-width: 1282px) {
   nav {
     height: 70px;
     justify-content: space-between;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
+    background-color:#292a2a !important;
+  
   }
+
+  
+
+
 
   label #btn {
     display: block;
@@ -180,23 +124,25 @@ label #cancel {
   }
 }
 
-@media screen and (max-width: 1074px) {
+@media screen and (max-width: 1282px) {
+ 
   .nav-menu {
     position: fixed;
     width: 100%;
-    height: 100%;
-    background: #34495e;
+    height: 60%;
+    background: #5c5e5f;
     top: 70px;
     left: -100%;
-    text-align: center;
+    text-align: start;
     display: block;
     transition: all 0.2s;
+    border-bottom-right-radius: 100%;
   }
   nav ul li {
     margin: 20px 0;
   }
   .nav-menu li a {
-    font-size: 25px;
+    font-size: 15px;
   }
 
   #check:checked ~ ul {
@@ -220,11 +166,15 @@ label #cancel {
 
 .login-section{
   margin-bottom: 13px;
-  padding: 10px;
+  /* padding: 10px; */
+  margin-left: 20px;
 }
+
+
 
 .login-section a {
   text-decoration: none;
+  margin: 5px;
 }
 
 
@@ -240,6 +190,15 @@ label #cancel {
 .login-section a:hover{
   color:white;
   border: 2px solid red;
+}
+
+@media screen and (max-width:458px) {
+
+  nav img{
+    display: none;
+  }
+  
+  
 }
 
 .login-section button{
@@ -264,7 +223,6 @@ video {
 
 #main {
   position: relative;
-
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -285,7 +243,6 @@ video {
 
 
 
-
 #page1 h1 {
   font-size: 6vw;
   font-weight: 900;
@@ -296,7 +253,7 @@ video {
   font-size: 2vw;
   font-weight: 900;
   margin-top: 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   color: #fff !important;
 }
 
@@ -316,13 +273,35 @@ video {
     font-size: 3vw;
     font-weight: 700;
     margin-top: 10px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 
   #page1 p {
-    width: 80%;
+    width: 90%;
+    font-size: 2.6vw;
   }
 }
+
+
+@media screen and (max-width: 450px){
+  #page1 h1 {
+    font-size: 10vw;
+    font-weight: 900;
+    margin-bottom: 30px;
+  }
+  #page1 h2 {
+    font-size: 4vw;
+    font-weight: 700;
+    /* margin-bottom: 20px; */
+  }
+
+  #page1 p {
+    width: 90%;
+    font-size: 4vw;
+  }
+
+}
+
 
 @media screen and (max-width: 380px) {
   #page1 h1 {
@@ -411,7 +390,7 @@ video {
 .form {
   flex: 1;
   display: flex;
-  flex-flow: row wrap;
+
 
   justify-content: center;
   align-items: center;
@@ -469,18 +448,78 @@ input {
   width: 20%;
 }
 
+.searchBox:hover{
+ 
+  background-color: rgb(186, 6, 6);
+ 
+}
 
+@media screen and (max-width:974px) {
+  .form{
+    width: 90%;
+    /* flex-direction: column; */
+    flex-flow: row wrap;
+}
+}
+/* 
+input {
+  width: 80%;
+  
+  flex: 2;
+}
 
+.date {
+  width: 80%;
+  flex: 1;
+}
 
-.container {
+.searchBox {
+  width: 20%;
+display: inline;
+}
+
+.searchBox {
+  text-decoration: none;
+  color:#fff;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  padding: 15px;
+  cursor: pointer;
+  background-color:red;
+  font-size: 16px;
+  font-weight: normal;
+  
+} */
+
+@media screen and (max-width:500px) {
+  .searchBox {
+    /* padding: 20px 5px; */
+    height: 50px;
+    margin-right: 5px;
+    font-size: 13px;
+    
+   
+  }
+}
+
+.container-card{
   display: grid;
   place-items: center;
+ 
   height: 400px;
-  margin: auto;
-  position: relative;
   width: 90%;
+  margin: auto;
+  
+  position: relative;
+ 
   overflow: hidden;
 }
+
+
+.card-slider h2{
+margin-top: 20px !important;
+}
+
 
 .slide-container {
   display: flex;
@@ -546,6 +585,10 @@ input {
   margin: auto;
   color: #fff;
 }
+.readmore p{
+  font-size: 1.2rem;
+}
+
 
 .card-section {
   display: flex;
@@ -553,8 +596,8 @@ input {
   margin: auto;
   gap: 10px;
   /* height: 300px; */
-  margin-top: 20px;
-  color: #fff;
+  /* margin-top: 20px; */
+  /* color: #fff; */
 }
 
 .card {
@@ -563,7 +606,8 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 300px;
+  height: 300px !important;
+  width: 20vw;
   box-shadow: 5px 5px 5px rgb(57, 55, 55);
 }
 
@@ -586,31 +630,61 @@ input {
 .card-body p {
   font-size: 1rem;
   font-weight: 600;
+  color: white;
 }
+
+
+.card:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 10;
+ transition: 0.3s all ease-in-out;
+
+}
+
+
+
+
+@media screen and (max-width:924px) {
+  .card{
+    height: 250px !important;
+  }
+
+}
+
 
 @media screen and (max-width: 780px) {
   .card-section {
     display: flex;
     flex-direction: column;
     width: 95%;
+    /* height: 100px !important; */
     margin: auto;
     /* background-color: red !important; */
-    /* position: relative; */
+    /* position: absolute; */
+  }
 
-    .card {
-      position: relative;
-      width: 90vw !important;
-      margin: auto;
-    }
+
+  .card {
+    position: relative;
+    width: 80vw ;
+    margin: auto;
+    height: 200px !important;
+   
   }
   .card img {
     position: absolute;
   }
   .card-body h2 {
-    font-size: 7vw !important;
+    font-size: 5vw !important;
     position: relative;
   }
 }
+
+
+
+
+
 
 .international {
   margin-top: 50px;
@@ -1370,3 +1444,9 @@ footer .flex:last-child a:hover {
   transform:translateY(-100%);
   transition: all .3s 1s ease-out;
 }
+
+
+
+
+
+/* CARDS TRYING  */

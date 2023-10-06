@@ -1,7 +1,7 @@
 //   Scrollling animation for navber
 
 gsap.to("nav", {
-  backgroundColor: "#000",
+  backgroundColor: "#373636",
   
   duration: 1,
   height: "80px",
