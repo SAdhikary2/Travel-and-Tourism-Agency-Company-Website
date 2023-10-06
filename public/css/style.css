@@ -108,7 +108,13 @@ label #cancel {
   }
 
   
-
+nav img{
+  height: 100px !important;
+ 
+}
+nav{
+  overflow: hidden;
+}
 
 
   label #btn {
@@ -192,7 +198,7 @@ label #cancel {
   border: 2px solid red;
 }
 
-@media screen and (max-width:458px) {
+@media screen and (max-width:514px) {
 
   nav img{
     display: none;
@@ -200,6 +206,19 @@ label #cancel {
   
   
 }
+
+@media screen and (max-width :370px) {
+  .login-section button{
+    font-size: 10px !important;
+  }
+  .loader-section a{
+  margin: 0;
+  }
+  .login-section{
+    padding: auto;
+  }
+}
+
 
 .login-section button{
   background-color: red;
@@ -708,7 +727,7 @@ summary {
 }
 
 .card1 {
-  height: 370px;
+  height: auto;
   width: 250px;
   /* background-color: red; */
   color: #fff;
@@ -719,19 +738,19 @@ summary {
   border-radius: 20px;
   position: relative;
   border: 2px solid #fff;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   box-shadow: 10px 10px 6px #484848;
 }
 
-.card1:hover {
+/* .card1:hover {
   background-color:rgb(172, 48, 48);
   color:#fff;
   transition: 0.5s ease-in;
-}
+} */
 
 .card1 img {
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   margin-top: 10px;
 }
@@ -741,8 +760,8 @@ summary {
   margin: auto;
 }
 .card1 h4 {
-  padding: 20px 10px 0 10px;
-  margin-top: 10px;
+  /* padding: 20px 10px 0 10px;
+  margin-top: 10px; */
   color: #fff !important;
 }
 .why-section h1 {
@@ -762,14 +781,14 @@ summary {
   .card1-section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    row-gap: 10px;
     align-items: center;
     justify-content: center;
   }
 
   .card1 {
-    height: 250px;
-    width: 90%;
+    height: auto;
+    width: 80%;
     /* background-color: red; */
     color: #fff;
     display: flex;
@@ -790,13 +809,16 @@ summary {
   }
 
   .card1 p {
-    width: 100%;
+    width: 85%;
+    padding: auto;
+    font-size: 1rem;
+    margin-bottom: 10px;
   }
 }
 
 @media screen and (max-width: 454px) {
   .card1 {
-    height: 350px;
+    height: auto;
     width: 80%;
 
     /* background-color: red; */
@@ -814,6 +836,7 @@ summary {
     position: relative;
     /* margin: auto; */
     padding: 10px;
+  
   }
 
   .card1 h4 {
@@ -1233,10 +1256,31 @@ footer fieldset {
 }
 
 footer fieldset input {
+  width: 100%;
   background-color: #5a5a5a;
   border: 0;
   color: var(--lite);
   padding: 1rem;
+}
+
+.subcribe-sec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.subcribe-sec button{
+  width: 100%;
+}
+
+
+
+@media screen and (max-width:504px) {
+  footer fieldset input{
+    width: 100%;
+  }
 }
 
 footer fieldset .btn {
@@ -1301,7 +1345,13 @@ footer .flex:last-child a:hover {
   }
 }
 
+.footer-image a img{
+ 
 
+  width: 120px;
+  height: 80px;
+  position: relative;
+}
    
 
 
