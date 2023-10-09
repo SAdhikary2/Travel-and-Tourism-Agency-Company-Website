@@ -37,6 +37,40 @@ app.get('/gujrat',(req,res)=>{
     res.render('gujrat')
 })
 
+app.get('/jammu',(req,res)=>{
+    res.render('jammu')
+})
+
+app.get('/kerala',(req,res)=>{
+    res.render('kerala')
+})
+
+app.get('/rajasthan',(req,res)=>{
+    res.render('rajasthan')
+})
+app.get('/kasmir',(req,res)=>{
+    res.render('jammu')
+})
+
+app.get('/america',(req,res)=>{
+    res.render('america')
+})
+
+app.get('/austrelia',(req,res)=>{
+    res.render('austrelia')
+})
+
+app.get('/canada',(req,res)=>{
+    res.render('canada')
+})
+
+app.get('/europe',(req,res)=>{
+    res.render('europe')
+})
+
+app.get('/south africa',(req,res)=>{
+    res.render('south africa')
+})
 
 
 
