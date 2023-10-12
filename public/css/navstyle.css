@@ -61,13 +61,13 @@
     padding: 10px;
   }
 
-  .login-section a {
+  .loginClass {
     text-decoration: none;
   }
 
 
 
-  .login-section a {
+  .loginClass{
     color: red;
     font-size: 1rem;
     font-weight: 700;
@@ -75,12 +75,12 @@
     border-radius: 20px;
   }
 
-  .login-section a:hover {
+  .loginClass:hover {
     color: white;
     border: 2px solid red;
   }
 
-  .login-section button {
+  .buttonClass button{
     background-color: red;
     color: white;
     border: none;
@@ -90,6 +90,9 @@
     font-weight: 700;
   }
 
+  .buttonClass button:hover{
+    background-color: rgb(205, 10, 10);
+  }
   
   label #btn,
   label #cancel {

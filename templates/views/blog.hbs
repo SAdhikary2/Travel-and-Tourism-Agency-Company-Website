@@ -4,17 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- Font Awesome CSS (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="/airplane.png" type="logo">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+
+
     <title>Travel Blogs</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/navstyle.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+
+    <style>
+        .login-section{
+             width: auto;
+  white-space: nowrap;
+  margin-left: 20px;
+        }
+
+    .blog-heading h3{
+        margin-top: 20px;    }
+
+    </style>
 </head>
 
 <body>
 
-    <!-- heading ------------>
+    {{>navber}}
+   
 
     <div class="blog-heading">
-        <h3>Find Your Travel Inspiration</h3>
+        <h3><u>Travel News</u></h3>
     </div>
 
     <div id="items">
@@ -28,7 +62,7 @@
                     <!-- img -->
                     <a href="https://www.fabhotels.com/blog/places-to-visit-in-august/">
                         <div class="blog-img">
-                            <img src="images/blog-A1.jpg" alt="Blog Image">
+                            <img src="Images/blog/blog-A1.jpg" alt="Blog Image">
                     </a>
                 </div>
                 <!-- text -->
@@ -45,7 +79,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/biyadhoo-island/"><img src="images/blog-A2.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/biyadhoo-island/"><img src="Images/blog/blog-A2.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -62,7 +96,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/malls-in-singapore/"><img src="images/blog-A3.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/malls-in-singapore/"><img src="Images/blog/blog-A3.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -82,7 +116,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/vietnam-shopping/"><img src="images/blog-A4.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/vietnam-shopping/"><img src="Images/blog/blog-A4.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -100,7 +134,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/resorts-near-munnar/"><img src="images/blog-A5.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/resorts-near-munnar/"><img src="Images/blog/blog-A5.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -117,7 +151,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://wanderon.in/blogs/local-food-in-leh-ladakh"><img src="images/blog-A6.jpg" alt="Blog Image"></a>
+                    <a href="https://wanderon.in/blogs/local-food-in-leh-ladakh"><img src="Images/blog/blog-A6.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -136,7 +170,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.sotc.in/blog/indian-holidays/unravelling-the-mystique-of-coorgs-coffee-plantations"><img src="images/blog-A7.jpg" alt="Blog Image"></a>
+                    <a href="https://www.sotc.in/blog/indian-holidays/unravelling-the-mystique-of-coorgs-coffee-plantations"><img src="Images/blog/blog-A7.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -153,7 +187,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.tourmyindia.com/blog/best-trekking-places/"><img src="images/blog-A8.jpg" alt="Blog Image"></a>
+                    <a href="https://www.tourmyindia.com/blog/best-trekking-places/"><img src="Images/blog/blog-A8.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -169,7 +203,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.munnar.holiday/munnartourism/munnar-tea-estates/"><img src="images/blog-A9.jpg" alt="Blog Image"></a>
+                    <a href="https://www.munnar.holiday/munnartourism/munnar-tea-estates/"><img src="Images/blog/blog-A9.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -194,7 +228,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/places-to-visit-in-monsoon-in-maharashtra/"><img src="images/blog-B1.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/places-to-visit-in-monsoon-in-maharashtra/"><img src="Images/blog/blog-B1.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -211,7 +245,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.thomascook.in/blog/places-to-visit-near-pune-in-monsoon"><img src="images/blog-B2.jpg" alt="Blog Image"></a>
+                    <a href="https://www.thomascook.in/blog/places-to-visit-near-pune-in-monsoon"><img src="Images/blog/blog-B2.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -228,7 +262,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.fabhotels.com/blog/places-to-visit-in-meghalaya/"><img src="images/blog-B3.jpg" alt="Blog Image"></a>
+                    <a href="https://www.fabhotels.com/blog/places-to-visit-in-meghalaya/"><img src="Images/blog/blog-B3.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -249,7 +283,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.nayatrip.com/blog/top-deserts-in-india/"><img src="images/blog-B4.jpg" alt="Blog Image"></a>
+                    <a href="https://www.nayatrip.com/blog/top-deserts-in-india/"><img src="Images/blog/blog-B4.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -265,7 +299,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/mysterious-places-in-india/"><img src="images/blog-B5.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/mysterious-places-in-india/"><img src="Images/blog/blog-B5.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -283,7 +317,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.fabhotels.com/blog/street-food-in-bangalore/"><img src="images/blog-B6.jpg" alt="Blog Image"></a>
+                    <a href="https://www.fabhotels.com/blog/street-food-in-bangalore/"><img src="Images/blog/blog-B6.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -302,7 +336,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.fabhotels.com/blog/places-to-visit-in-june/"><img src="images/blog-B7.jpg" alt="Blog Image"></a>
+                    <a href="https://www.fabhotels.com/blog/places-to-visit-in-june/"><img src="Images/blog/blog-B7.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -319,7 +353,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://moustachescapes.com/blog/winter-is-here-so-are-these-top-8-winter-treks-of-india/"><img src="images/blog-B8.jpg" alt="Blog Image"></a>
+                    <a href="https://moustachescapes.com/blog/winter-is-here-so-are-these-top-8-winter-treks-of-india/"><img src="Images/blog/blog-B8.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -336,7 +370,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/trekking-destinations-near-mumbai-and-pune/"><img src="images/blog-B9.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/trekking-destinations-near-mumbai-and-pune/"><img src="Images/blog/blog-B9.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -359,7 +393,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.tourism-of-india.com/blog/chardham-yatra-routes/"><img src="images/blog-C1.jpg" alt="Blog Image"></a>
+                    <a href="https://www.tourism-of-india.com/blog/chardham-yatra-routes/"><img src="Images/blog/blog-C1.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -376,7 +410,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.ju-lehadventure.com/ladakh-information/food-ladakh-10-must-try-local-dishes-and-drinks"><img src="images/blog-C2.jpg" alt="Blog Image"></a>
+                    <a href="https://www.ju-lehadventure.com/ladakh-information/food-ladakh-10-must-try-local-dishes-and-drinks"><img src="Images/blog/blog-C2.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -393,7 +427,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.thomascook.in/blog/the-ultimate-travel-guide-to-scenic-dubai-miracle-garden"><img src="images/blog-C3.jpg" alt="Blog Image"></a>
+                    <a href="https://www.thomascook.in/blog/the-ultimate-travel-guide-to-scenic-dubai-miracle-garden"><img src="Images/blog/blog-C3.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -412,7 +446,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.indianholiday.com/blog/adventure-activities-in-maldives/"><img src="images/blog-C4.jpg" alt="Blog Image"></a>
+                    <a href="https://www.indianholiday.com/blog/adventure-activities-in-maldives/"><img src="Images/blog/blog-C4.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -428,7 +462,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://traveltriangle.com/blog/thailand-temples/"><img src="images/blog-C5.jpg" alt="Blog Image"></a>
+                    <a href="https://traveltriangle.com/blog/thailand-temples/"><img src="Images/blog/blog-C5.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -444,7 +478,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.fabhotels.com/blog/weekend-getaways-near-mumbai/"><img src="images/blog-C6.jpg" alt="Blog Image"></a>
+                    <a href="https://www.fabhotels.com/blog/weekend-getaways-near-mumbai/"><img src="Images/blog/blog-C6.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -462,7 +496,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.thomascook.in/blog/top-5-adventure-sports-and-activities-in-rishikesh"><img src="images/blog-C7.jpg" alt="Blog Image"></a>
+                    <a href="https://www.thomascook.in/blog/top-5-adventure-sports-and-activities-in-rishikesh"><img src="Images/blog/blog-C7.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -479,7 +513,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.thomascook.in/blog/7-magnificent-temples-in-mysore"><img src="images/blog-C8.jpg" alt="Blog Image"></a>
+                    <a href="https://www.thomascook.in/blog/7-magnificent-temples-in-mysore"><img src="Images/blog/blog-C8.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -496,7 +530,7 @@
             <div class="blog-box">
                 <!-- img -->
                 <div class="blog-img">
-                    <a href="https://www.clubmahindra.com/blog/places-to-visit/6-best-international-destinations-to-visit-in-may"><img src="images/blog-C9.jpg" alt="Blog Image"></a>
+                    <a href="https://www.clubmahindra.com/blog/places-to-visit/6-best-international-destinations-to-visit-in-may"><img src="Images/blog/blog-C9.jpg" alt="Blog Image"></a>
                 </div>
                 <!-- text -->
                 <div class="blog-text">
@@ -538,9 +572,10 @@
     <!-- Back to Top Button -->
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i> Go to Top</button>
 
+{{>generalFooter}}
 
     <!-- Script Link -->
-    <script src="script.js"></script>
+    <script src="javascript/script1.js"></script>
 
 </body>
 

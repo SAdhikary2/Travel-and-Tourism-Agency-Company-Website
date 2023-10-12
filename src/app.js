@@ -25,10 +25,13 @@ hbs.registerPartials(partialPath)
 //ROUTING`
 app.use(express.static(staticPath))
 
+
+//THIS IS INDEX PAGE 
 app.get('/',(req,res)=>{
     res.render('index')
 })
 
+//INDIAN DESTINATION ROUTING
 app.get('/andaman',(req,res)=>{
     res.render('andaman')
 })
@@ -52,6 +55,8 @@ app.get('/kasmir',(req,res)=>{
     res.render('jammu')
 })
 
+
+//INTERNATIONAL DESTINATION ROUTING
 app.get('/america',(req,res)=>{
     res.render('america')
 })
@@ -68,16 +73,37 @@ app.get('/europe',(req,res)=>{
     res.render('europe')
 })
 
+app.get('/about',(req,res)=>{
+    res.render('about')
+})
+
 app.get('/africa',(req,res)=>{
     res.render('africa')
 })
 
-
-
-app.get('*',(req,res)=>{
-    res.send(`<h1>Page not found so what can i do</h1>`)
+//for login 
+app.get('/login',(req,res)=>{
+    res.render('login')
 })
 
+//others page
+app.get('/contact',(req,res)=>{
+    res.render('contact')
+})
+
+app.get('/blog',(req,res)=>{
+    res.render('blog')
+})
+
+
+
+
+
+
+//for error message
+app.get('*',(req,res)=>{
+    res.render('error')
+})
 
 
 app.listen(port,()=>{

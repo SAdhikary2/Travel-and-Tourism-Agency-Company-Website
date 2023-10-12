@@ -178,24 +178,36 @@ nav{
 
 
 
-.login-section a {
+.loginClass {
   text-decoration: none;
-  margin: 5px;
 }
 
 
 
-.login-section a  {
-  color:red;
+.loginClass{
+  color: red;
   font-size: 1rem;
   font-weight: 700;
   padding: 8px 10px;
   border-radius: 20px;
 }
 
-.login-section a:hover{
-  color:white;
+.loginClass:hover {
+  color: white;
   border: 2px solid red;
+}
+
+.buttonClass button{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.buttonClass button:hover{
+  background-color: rgb(205, 10, 10);
 }
 
 @media screen and (max-width:514px) {
@@ -1272,133 +1284,6 @@ fieldset {
     font-size: 12px;
   }
 }
-
-/***************************
-             FOOTER
-****************************/
-footer {
-  background-color: var(--primary);
-  color: var(--lite);
-}
-
-footer h3 {
-  color: var(--white);
-  margin-bottom: 1.5rem;
-}
-
-footer a {
-  color: var(--lite);
-  display: block;
-  margin: 15px 0;
-}
-
-footer a:hover {
-  color: var(--white);
-}
-
-footer fieldset {
-  padding: 0;
-}
-
-footer fieldset input {
-  width: 100%;
-  background-color: #5a5a5a;
-  border: 0;
-  color: var(--lite);
-  padding: 1rem;
-}
-
-.subcribe-sec{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.subcribe-sec button{
-  width: 100%;
-}
-
-
-
-@media screen and (max-width:504px) {
-  footer fieldset input{
-    width: 100%;
-  }
-}
-
-footer fieldset .btn {
-  border-radius: 0;
-  border: 0;
-}
-
-footer fieldset .btn_2:hover {
-  background-color: var(--secondary);
-  border: 0;
-  color: var(--primary);
-}
-
-footer .flex:last-child {
-  align-items: center;
-}
-
-footer .flex:last-child .flex-content:last-child {
-  text-align: right;
-}
-
-footer .flex:last-child p {
-  color: var(--white);
-}
-
-footer .flex:last-child a {
-  width: 40px;
-  display: inline-block;
-  background-color: #334f6c;
-  color: var(--white);
-  padding: 0.5rem;
-  margin-right: 3px;
-  text-align: center;
-}
-
-footer .flex:last-child a:hover {
-  transform: scale(1.5);
-  border-radius: 50%;
-  border: 0.5px solid #fff;
-  background-color: #000;
-}
-
-@media (max-width: 1100px) {
-  footer .flex:first-child {
-    flex-wrap: wrap;
-  }
-
-  footer .flex:first-child .flex-content {
-    flex: 1 1 40%;
-  }
-}
-
-@media (max-width: 920px) {
-  footer .flex:last-child .flex-content:last-child {
-    text-align: left;
-  }
-}
-
-@media (max-width: 320px) {
-  footer .flex:first-child .flex-content {
-    flex: 1 1 100%;
-  }
-}
-
-.footer-image a img{
- 
-
-  width: 120px;
-  height: 80px;
-  position: relative;
-}
-   
-
 
 
 
