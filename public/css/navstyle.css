@@ -15,21 +15,10 @@
     justify-content: space-between;
     padding: 0 50px;
     z-index: 99;
-    /* position: fixed; */
-
-
+    position: sticky;
   }
-
-
-
-
-
-
-
   nav img {
     height: 100px;
-    
-
   }
 
   .nav-menu {
@@ -54,100 +43,17 @@
     color: red !important;
   }
 
-
   .nav-links a {
     text-decoration: none;
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
-
-
   }
 
   .nav-links a:hover {
     color: red;
 
   }
-
-  /* MEGA DROPDOWN  */
-
-
-
-  /* NAVBER RESPONSIVE */
-  label #btn,
-  label #cancel {
-    color: white;
-    font-size: 30px;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
-    display: none;
-  }
-
-  #check {
-    display: none;
-  }
-
-  @media screen and (max-width: 1078px) {
-    nav {
-      height: 70px;
-      justify-content: space-between;
-      flex-direction: row-reverse;
-    }
-
-    label #btn {
-      display: block;
-    }
-
-    .nav-menu {
-      display: none;
-    }
-
-    nav img {
-      height: 50px;
-    }
-  }
-
-  @media screen and (max-width: 1074px) {
-    .nav-menu {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #34495e;
-      top: 70px;
-      left: -100%;
-      text-align: center;
-      display: block;
-      transition: all 0.2s;
-    }
-
-    nav ul li {
-      margin: 20px 0;
-    }
-
-    .nav-menu li a {
-      font-size: 25px;
-    }
-
-    #check:checked~ul {
-      left: 0;
-    }
-
-    #check:checked~label #btn {
-      display: none;
-    }
-
-    #check:checked~label #cancel {
-      display: block;
-    }
-  }
-
-  /* 
-.login-section{
-  margin-left: 100px;
-} */
-
 
 
   .login-section {
@@ -184,6 +90,178 @@
     font-weight: 700;
   }
 
-  nav {
-    position: sticky;
+  
+  label #btn,
+  label #cancel {
+    color: white;
+    font-size: 30px;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
   }
+
+  #check {
+    display: none;
+  }
+
+
+
+
+
+
+
+
+  /* RESPONSIVE QUERIES FOR GENERAL NAVBER  */
+  /* @media screen and (max-width: 1078px) {
+    nav {
+      height: 70px;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    label #btn {
+      display: block;
+    }
+
+    .nav-menu {
+      display: none;
+    }
+
+    nav img {
+      height: 100px;
+    }
+  } */
+
+  /* @media screen and (max-width: 1074px) {
+    .nav-menu {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #34495e;
+      top: 70px;
+      left: -100%;
+      text-align: center;
+      display: block;
+      transition: all 0.2s;
+    }
+
+    nav ul li {
+      margin: 20px 0;
+    }
+
+    .nav-menu li a {
+      font-size: 25px;
+    }
+
+    #check:checked~ul {
+      left: 0;
+    }
+
+    #check:checked~label #btn {
+      display: none;
+    }
+
+    #check:checked~label #cancel {
+      display: block;
+    }
+  }
+  */
+  @media screen and (max-width: 1282px) {
+    nav {
+      height: 70px;
+      justify-content: space-between;
+      /* flex-direction: row-reverse; */
+      background-color:#292a2a !important;
+    
+    }
+  
+    
+  nav img{
+    height: 100px !important;
+   
+  }
+  nav{
+    overflow: hidden;
+  }
+  
+  
+    label #btn {
+      display: block;
+    }
+  
+    .nav-menu {
+      display: none;
+    }
+  
+  
+  }
+
+  @media screen and (max-width: 1282px) {
+ 
+    .nav-menu {
+      position: fixed;
+      width: 100%;
+      height: 60%;
+      background: #5c5e5f;
+      top: 70px;
+      left: -100%;
+      text-align: start;
+      display: block;
+      transition: all 0.2s;
+      border-bottom-right-radius: 100%;
+    }
+    nav ul li {
+      margin: 20px 0;
+    }
+    .nav-menu li a {
+      font-size: 15px;
+    }
+
+  
+    #check:checked ~ ul {
+      left: 0;
+    }
+  
+    #check:checked ~ label #btn {
+      display: none;
+    }
+  
+    #check:checked ~ label #cancel {
+      display: block ;
+    }
+  }
+  
+
+  @media screen and (max-width:506px) {
+    nav img{
+      display: none;
+    }
+
+    nav{
+      
+      padding: 10px;  
+  }
+  }
+
+  @media screen and (max-width:360px) {
+
+   
+      .login-section button{
+        font-size: 15px !important;
+      }
+      .loader-section a{
+      margin: 0;
+      }
+      .login-section{
+        padding: auto;
+      }
+      .login-section a:hover {
+        color: white;
+        border: 2px solid red;
+      }
+    
+  }
+
+  

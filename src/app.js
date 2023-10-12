@@ -68,11 +68,9 @@ app.get('/europe',(req,res)=>{
     res.render('europe')
 })
 
-app.get('/south africa',(req,res)=>{
-    res.render('south africa')
+app.get('/africa',(req,res)=>{
+    res.render('africa')
 })
-
-
 
 
 
