@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const path=require('path')
 const hbs=require('hbs')
+// const collection=require("./mongodb")
 const port=process.env.PORT || 3000;
 
 
@@ -24,7 +25,8 @@ hbs.registerPartials(partialPath)
 
 //ROUTING`
 app.use(express.static(staticPath))
-
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 //THIS IS INDEX PAGE 
 app.get('/',(req,res)=>{
@@ -86,6 +88,9 @@ app.get('/login',(req,res)=>{
     res.render('login')
 })
 
+
+
+
 //others page
 app.get('/contact',(req,res)=>{
     res.render('contact')
@@ -95,7 +100,13 @@ app.get('/blog',(req,res)=>{
     res.render('blog')
 })
 
+app.get('/booking',(req,res)=>{
+    res.render('booking')
+})
 
+app.get('/payment',(req,res)=>{
+    res.render('payment')
+})
 
 
 
