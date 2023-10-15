@@ -9,10 +9,14 @@
   "author": "Sukalyan Adhikary",
   "license": "ISC",
   "dependencies": {
+    "alert": "^5.1.5",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "hbs": "^4.2.0",
-    "mongoose": "^7.6.1"
+    "mongoose": "^7.6.1",
+    "node-popup": "^0.1.14",
+    "popups": "^1.1.3"
   }
 }
