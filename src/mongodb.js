@@ -1,30 +1,20 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/LoginCredential")
-.then(()=>{
-    console.log("mongodb is connected");
-})
-.catch(()=>{
-    console.log('Failed to connect');
-})
 
-const loginschema=new mongoose.Schema(
-    {
-        username:{
-            type:String,
-            required:true
-        },
-        email:{
-            type:String,
-            required:true
-        },
-        password:{
-            type:String,
-            required:true
-        }
-    }
-)
 
-const collecttion=new mongoose.model("collection1",loginschema)
+const bookingSchema =new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    email: String,
+    phoneNumber: Number,
+    numberOfGuests: Number,
+    checkInDate: Date,
+    checkOutDate: Date,
+    specialRequest: String,
+});
 
-module.exports=collecttion
+
+
+// Create a model from the schema
+const monmodel = mongoose.model('BOOKING', bookingSchema);
+module.exports=monmodel;
