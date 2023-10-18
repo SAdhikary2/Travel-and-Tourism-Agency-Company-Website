@@ -8,8 +8,7 @@ const mongoose=require('mongoose')
 const session =require('express-session')
 const monmodel=require('./mongodb') 
 const moment = require('moment'); //to convert date in to string
-const twilio = require('twilio');
-const client = twilio('AC1e1901e90b837f2485510f658ea38bdb', '01a1b79ad096bc9c9772f21a748bbc08');
+const Nexmo = require('nexmo');
 
 const port=process.env.PORT || 3000;
 
@@ -50,7 +49,7 @@ const userSchema = new mongoose.Schema({
     } else if (loginname === 'admin') {
         const adminPassword = 'A@1234'; // replace with your actual admin password
         if (loginpassword === adminPassword) {
-            res.render('admin')
+            res.redirect('admin')
         } else {
             res.send('Invalid admin credentials');
         }
@@ -73,12 +72,13 @@ app.post('/post', async (req, res) => {
     const data=new monmodel({
         firstName:req.body.firstName,
         lastName:req.body.lastName,
-        email:req.body.email,
+        destination:req.body.destination,
         phoneNumber:req.body.phoneNumber,
         numberOfGuests:req.body.numberOfGuests,
         checkInDate:req.body.checkInDate,
         checkOutDate:req.body.checkOutDate,
         specialRequest: req.body.specialRequest,
+        
     })
     const val=await data.save()
     // res.json(val)
@@ -114,19 +114,41 @@ hbs.registerHelper('addOne', function(value) {
 });
 
 //FOR CONFIRMING BY THE MESSAGE SENDING
-app.post('/admin/confirm/:id', async (req, res) => {
-    const { id } = req.params;
-    const form = await monmodel.findById(id);
-    client.messages.create({
-        body: 'Your booking has been confirmed.',
-        from: 'yourtwiliophoneNumber',
-        to: form.phoneNumber
-    });
-    res.redirect('/admin');
+// app.post('/admin/confirm/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const form = await monmodel.findById(id);
+//     client.messages.create({
+//         body: 'Your booking has been confirmed.',
+//         from: 'yourtwiliophoneNumber',
+//         to: form.phoneNumber
+//     });
+//     res.redirect('/admin');
+// });
+
+
+//FOR FORM SUBMISSION DATE
+app.post('/submit-form', (req, res) => {
+    let formData = req.body;
+    
+    // Add the current date as the submission date
+    formData.submissionDate = new Date();
+    
+    // Save formData to database...
 });
 
 
-
+//FOR SETTING STATUS DONE
+app.post('/admin/confirm/:id', (req, res) => {
+    monmodel.findByIdAndUpdate(req.params.id, { status: 'Done' })
+      .then(() => {
+        res.redirect('/admin');
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send('Error updating status');
+      });
+  });
+  
 
 
 //THIS IS INDEX PAGE 
