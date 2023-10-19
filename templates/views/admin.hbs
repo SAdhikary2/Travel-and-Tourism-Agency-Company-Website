@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin</title>
 
-{{!-- THIS IS FOR THE STATUS UPDATING --}}
+
+
+</script>
 
 
 
@@ -96,7 +98,7 @@
              font-weight:700 ;
               color: red; }
                td:nth-of-type(6):before {
-                    content: "Phone Number : ";
+                    content: "Email : ";
                     font-weight:700 ;
                      color: red;
                 }
@@ -145,7 +147,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Destination</th>
-                <th>Phone Number</th>
+                <th>Email</th>
                 <th>Number of Guests</th>
                 <th>Check-in Date</th>
                 <th>Check-out Date</th>
@@ -161,15 +163,15 @@
                 <td>{{this.firstName}}</td>
                 <td>{{this.lastName}}</td>
                 <td>{{this.destination}}</td>
-                <td>91{{this.phoneNumber}}</td>
+                <td>{{this.email}}</td>
                 <td>{{this.numberOfGuests}}</td>
                 <td>{{date this.checkInDate "DD-MM-YYYY"}}</td>
                 <td>{{date this.checkOutDate "DD-MM-YYYY"}}</td>
                 <td>{{this.specialRequest}}</td>
-                   <td>{{this.status}}</td>
+                   <td id="status">{{this.status}}</td>
                 <td>
                     <form action="/admin/confirm/{{this._id}}" method="post">
-                        <button type="submit">Confirm</button>
+                        <button id="confirmButton" type="submit">Confirm</button>
                     </form>
 
                     <form action="/admin/delete/{{this._id}}" method="post">

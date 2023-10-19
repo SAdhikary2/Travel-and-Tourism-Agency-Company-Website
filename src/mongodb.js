@@ -6,14 +6,15 @@ const bookingSchema =new mongoose.Schema({
     firstName: String,
     lastName: String,
     destination: String,
-    phoneNumber: Number,
+    // phoneNumber: Number,
+    email:String,
     numberOfGuests: Number,
     checkInDate: Date,
     checkOutDate: Date,
     specialRequest: String,
     status: {
         type: String,
-        default: 'pending'
+        default: 'Pending'
       }
 });
 

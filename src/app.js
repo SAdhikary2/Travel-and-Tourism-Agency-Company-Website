@@ -8,7 +8,7 @@ const mongoose=require('mongoose')
 const session =require('express-session')
 const monmodel=require('./mongodb') 
 const moment = require('moment'); //to convert date in to string
-const Nexmo = require('nexmo');
+const nodemailer = require('nodemailer');
 
 const port=process.env.PORT || 3000;
 
@@ -73,7 +73,8 @@ app.post('/post', async (req, res) => {
         firstName:req.body.firstName,
         lastName:req.body.lastName,
         destination:req.body.destination,
-        phoneNumber:req.body.phoneNumber,
+        // phoneNumber:req.body.phoneNumber,
+        email:req.body.email,
         numberOfGuests:req.body.numberOfGuests,
         checkInDate:req.body.checkInDate,
         checkOutDate:req.body.checkOutDate,
@@ -113,17 +114,148 @@ hbs.registerHelper('addOne', function(value) {
     return value + 1;
 });
 
-//FOR CONFIRMING BY THE MESSAGE SENDING
+
+app.post('/admin/confirm/:id', async (req, res) => {
+    const { id } = req.params;
+    const form = await monmodel.findById(id);
+    let userEmail = form.email;
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        secure: true,
+        logger: true,
+        debug: true,
+        secureConnection: false,
+        auth: {
+            user: 'sukalyanadhikary2021@gmail.com',
+            pass: 'xags uttu ezyk xchd'
+        }
+    });
+
+    let mailOptions = {
+        from: 'sukalyanadhikary2021@gmail.com',
+        to: userEmail,
+        subject: 'Confirmation Email',
+        // text: 'Thank You for confirming us and you have successfully booked your destination. Please Pay '
+        html:`<h1>Welcome to Explore</h1><pre>Thank you for confirming your destination and welcome to Explore!
+
+        We’re thrilled to have you on board. At Explore, we’re committed to helping you discover new experiences and adventures.
+        
+        Here are a few things you can do next:
+        
+        Check out our latest adventures and experiences on our website.
+        Connect with us on social media for updates and special offers.
+        If you have any questions or need assistance, don’t hesitate to reach out to our support team.
+        Remember, the world is full of amazing things waiting to be explored. Let’s start this journey together!
+        
+        <u><b><l>Pay on this upi sukalyan8317@axl</l></b></u>
+
+        Best regards, 
+        The Explore Team</pre>
+        `
+    };
+
+    transporter.sendMail(mailOptions)
+        .then(async info => {
+            console.log('mail sent successfully');
+            // Update the status after sending the email
+            await monmodel.findByIdAndUpdate(id, { status: 'Done' });
+            res.redirect('/admin');
+        })
+        .catch(error => {
+            console.log(error);
+            res.json({message: "Error updating status"});
+        });
+});
+
+
+
+
+
 // app.post('/admin/confirm/:id', async (req, res) => {
 //     const { id } = req.params;
 //     const form = await monmodel.findById(id);
-//     client.messages.create({
-//         body: 'Your booking has been confirmed.',
-//         from: 'yourtwiliophoneNumber',
-//         to: form.phoneNumber
+//     let userEmail = form.email;
+
+//     let transporter = nodemailer.createTransport({
+//         service: 'gmail',
+//         secure: true,
+//         logger: true,
+//         debug: true,
+//         secureConnection: false,
+//         auth: {
+//             user: 'sukalyanadhikary2021@gmail.com',
+//             pass: 'xags uttu ezyk xchd'
+//         }
 //     });
-//     res.redirect('/admin');
+
+//     let mailOptions = {
+//         from: 'sukalyanadhikary2021@gmail.com',
+//         to: userEmail,
+//         subject: 'Confirmation Email',
+//         text: 'Your booking has been confirmed.'
+//     };
+
+//     transporter.sendMail(mailOptions)
+//         .then(async info => {
+//             console.log('mail sent successfully');
+//             // Update the status after sending the email
+//             await monmodel.findByIdAndUpdate(id, { status: 'Done' });
+//             res.redirect('/admin');
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             res.send('Error updating status');
+//         });
 // });
+
+
+
+
+// app.post('/admin/confirm/:id',async (req, res) => {
+//     // Retrieve the user's email from the database using the ID from the URL
+//     // This is just a placeholder and should be replaced with your actual code
+    
+//     const { id } = req.params;
+//     const form = await monmodel.findById(id);
+//     let userEmail =form.email;
+
+//     let transporter = nodemailer.createTransport({
+//         service: 'gmail',
+//         // port:465,
+//         secure:true,
+//         logger:true,
+//         debug:true,
+//         secureConnection:false,
+//         auth: {
+//             user: 'sukalyanadhikary2021@gmail.com',
+//             pass: 'xags uttu ezyk xchd'
+//         }
+
+
+//     });
+
+  
+
+//     let mailOptions = {
+//         from: 'sukalyanadhikary2021@gmail.com',
+//         to: userEmail,
+//         subject: 'Confirmation Email',
+//         text: 'Your booking has been confirmed.'
+//     };
+
+//     transporter.sendMail(mailOptions)
+//         .then(info => {
+//             console.log('mail sent successfully');
+//             // Your existing code to confirm the booking...
+//             res.send('mail sent successfully')
+//         })
+//         .catch(error => {
+//             console.log(error);
+//         });
+// });
+
+
 
 
 //FOR FORM SUBMISSION DATE
@@ -138,16 +270,17 @@ app.post('/submit-form', (req, res) => {
 
 
 //FOR SETTING STATUS DONE
-app.post('/admin/confirm/:id', (req, res) => {
-    monmodel.findByIdAndUpdate(req.params.id, { status: 'Done' })
-      .then(() => {
-        res.redirect('/admin');
-      })
-      .catch((err) => {
-        console.log(err);
-        res.send('Error updating status');
-      });
-  });
+// app.post('/admin/confirm/:id', (req, res) => {
+//     monmodel.findByIdAndUpdate(req.params.id, { status: 'Done' })
+//       .then(() => {
+//         res.redirect('/admin');
+
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.send('Error updating status');
+//       });
+//   });
   
 
 
