@@ -342,8 +342,12 @@ app.get('/signup',(req,res)=>{
     res.render('login')
 })
 
-
-
+app.get('/chat',(req,res)=>{
+    res.render('chat')
+})
+app.get('/nearbyPlaces',(req,res)=>{
+    res.render('nearbyPlaces')
+})
 
 //others page
 app.get('/contact',(req,res)=>{
