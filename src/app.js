@@ -127,8 +127,8 @@ app.post('/admin/confirm/:id', async (req, res) => {
         debug: true,
         secureConnection: false,
         auth: {
-            user: 'sukalyanadhikary2021@gmail.com',
-            pass: 'xags uttu ezyk xchd'
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
         }
     });
 
