@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     
@@ -23,11 +25,10 @@
             </div>
             <div class="input-box">
               <input type="password" name="loginpassword" id="password" required />
+                <i class="fa fa-eye" id="togglePassword"></i>
               <label for="password">Password</label>
             </div>
             <div class="check-box">
-              <input type="checkbox" id="login-checkbox" />
-              <label for="login-checkbox">Remember me</label>
               <span>Forgot password?</span>
             </div>
             <button class="submit-button">
@@ -49,12 +50,10 @@
             </div>
             <div class="input-box">
               <input name="password" type="password" id="password2" required />
+                <i class="fa fa-eye" id="togglePassword2"></i>
               <label for="password2">Password</label>
             </div>
-            {{!-- <div class="check-box">
-              <input type="checkbox" id="register-checkbox" />
-              <label for="register-checkbox">Agree to the terms & conditions</label>
-            </div> --}}
+           
             <button class="submit-button">
               <span></span>
               <span></span>

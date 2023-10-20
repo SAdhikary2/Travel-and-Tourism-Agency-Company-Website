@@ -9,6 +9,8 @@ const session =require('express-session')
 const monmodel=require('./mongodb') 
 const moment = require('moment'); //to convert date in to string
 const nodemailer = require('nodemailer');
+const bcryptjs=require('bcryptjs')
+
 
 const port=process.env.PORT || 3000;
 
@@ -39,14 +41,25 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
   });
+
+  //registration bcryption
+  userSchema.pre('save',async function(next) {
+    if(this.isModified('password')){
+     
+        this.password=await bcryptjs.hash(this.password,10);
+        const password=this.password
+       
+    }
+    next();
+  })
+
   const User = mongoose.model('User', userSchema);
 
- app.post('/login', async (req, res) => {
+
+app.post('/login', async (req, res) => {
     const { loginname, loginpassword } = req.body;
-    const user = await User.findOne({ username: loginname, password: loginpassword });
-    if (user) {
-        res.render('index');
-    } else if (loginname === 'admin') {
+
+    if (loginname === 'admin') {
         const adminPassword = 'A@1234'; // replace with your actual admin password
         if (loginpassword === adminPassword) {
             res.redirect('admin')
@@ -54,9 +67,21 @@ const userSchema = new mongoose.Schema({
             res.send('Invalid admin credentials');
         }
     } else {
-       res.send('This is wrong number')
+        const user = await User.findOne({ username: loginname });
+
+        if (user) {
+            const isMatch = await bcryptjs.compare(loginpassword, user.password);
+            if (isMatch) {
+                res.render('index');
+            } else {
+                res.send('Invalid credentials');
+            }
+        } else {
+           res.send('This is wrong number')
+        }
     }
 });
+
   
   // Handle registration form submissions
     app.post('/signup', async (req, res) => {

@@ -111,19 +111,19 @@
   .input-box label {
     color: #fff;
     position: absolute;
-    top: 30%;
+    top: -70%;
     pointer-events: none;
     transition: 0.5s;
   }
   
-  .input-box input:focus + label,
+  /* .input-box input:focus + label,
   .input-box input:valid + label {
     top: -20px;
     color:red;
     font-size: 12px;
     background-color: #243b55;
     padding: 2px 5px;
-  }
+  } */
   
   .check-box {
     display: flex;
@@ -331,5 +331,19 @@
     main {
       width: 35rem;
     }
+  }
+  
+
+  #togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  #togglePassword2 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
   }
   

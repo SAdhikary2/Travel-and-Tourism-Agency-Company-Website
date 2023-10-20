@@ -16,3 +16,27 @@ register.addEventListener("click", () => {
   registerForm.style.left = "0px";
   loginForm.style.left = "-115%";
 });
+
+
+
+//for login form password view
+var togglePassword = document.getElementById("togglePassword");
+var password = document.getElementById("password");
+
+togglePassword.addEventListener('click', function() {
+  // Toggle the type attribute
+  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+  password.setAttribute('type', type);
+});
+
+
+//for residtration form password view
+
+var togglePassword2 = document.getElementById("togglePassword2");
+var password2 = document.getElementById("password2");
+
+togglePassword2.addEventListener('click', function() {
+  // Toggle the type attribute
+  const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+  password2.setAttribute('type', type);
+});
