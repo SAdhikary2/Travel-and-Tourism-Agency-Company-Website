@@ -10,6 +10,7 @@ const monmodel=require('./mongodb')
 const moment = require('moment'); //to convert date in to string
 const nodemailer = require('nodemailer');
 const bcryptjs=require('bcryptjs')
+const jwt=require('jsonwebtoken')
 
 
 const port=process.env.PORT || 3000;
@@ -40,9 +41,33 @@ const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
+    tokens:[
+        {
+            token:{
+                type:String,
+                required:true,
+            }
+        }
+    ]
   });
 
-  //registration bcryption
+//TOKEN GENARATION function define
+userSchema.methods.generateAuthToken=async function(){
+    try{
+        
+        const token=jwt.sign({_id:this._id.toString()},'mynameissukalyanadhikaryiamasoftwareenginner')
+        this.tokens=this.tokens.concat({token});
+        await this.save();
+        return token;
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
+
+
+  //registration bcryption middleware
   userSchema.pre('save',async function(next) {
     if(this.isModified('password')){
      
@@ -56,6 +81,8 @@ const userSchema = new mongoose.Schema({
   const User = mongoose.model('User', userSchema);
 
 
+
+//handle login form
 app.post('/login', async (req, res) => {
     const { loginname, loginpassword } = req.body;
 
@@ -71,6 +98,9 @@ app.post('/login', async (req, res) => {
 
         if (user) {
             const isMatch = await bcryptjs.compare(loginpassword, user.password);
+
+            //token genaration during login
+            const token=await user.generateAuthToken();
             if (isMatch) {
                 res.render('index');
             } else {
@@ -87,6 +117,11 @@ app.post('/login', async (req, res) => {
     app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
     const newUser = new User({ username, email, password });
+
+//for generating authentication token during registration
+const token=await newUser.generateAuthToken();
+
+
     await newUser.save();
     res.send(`<h1>You Have Register Successfully !!</h1>`)
   });
