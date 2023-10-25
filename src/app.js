@@ -11,8 +11,8 @@ const moment = require("moment"); //to convert date in to string
 const nodemailer = require("nodemailer");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const cookieParser=require('cookie-parser')
-const auth= require('./auth')
+const cookieParser = require("cookie-parser");
+const auth = require("./auth");
 
 const port = process.env.PORT || 3000;
 
@@ -73,7 +73,6 @@ userSchema.methods.generateAuthToken = async function () {
     console.log(error);
   }
 };
-
 //registration bcryption middleware
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
@@ -85,7 +84,7 @@ userSchema.pre("save", async function (next) {
 
 const User = mongoose.model("User", userSchema);
 
-module.exports=User;
+module.exports = User;
 
 //handle login form
 app.post("/login", async (req, res) => {
@@ -106,7 +105,6 @@ app.post("/login", async (req, res) => {
 
       //token genaration during login
       const token = await user.generateAuthToken();
-     
 
       //cookie save into client device during login
       // res.cookie("jwtCookies", token, {
@@ -114,17 +112,12 @@ app.post("/login", async (req, res) => {
       //   httpOnly: true,
       // });
 
-      res.cookie('jwtCookies', token, { 
-        httpOnly: true, 
-        sameSite:'None', 
-   
-        maxAge: 15 * 60 * 1000 // expires in 15 minutes
-    });
-    
+      res.cookie("jwtCookies", token, {
+        httpOnly: true,
+        maxAge: 1800000, // 30 minutes in milliseconds
+      });
+      // console.log(res.get('Set-Cookie'));
 
-     
-
-      
       if (isMatch) {
         res.render("index");
       } else {
@@ -146,8 +139,8 @@ app.post("/signup", async (req, res) => {
 
   //creating cookies and save to the browser
   res.cookie("jwtCookies", token, {
-    expires: new Date(Date.now() + 30 * 60 * 1000),
     httpOnly: true,
+    maxAge: 1800000, // 30 minutes in milliseconds
   });
 
   await newUser.save();
@@ -426,13 +419,9 @@ app.get("/blog", (req, res) => {
 });
 
 //before going to the booking page authentication check
-app.get("/booking", auth,(req, res) => {
+app.get("/booking", auth, (req, res) => {
   res.render("booking");
 });
-
-
-
-
 
 app.get("/payment", (req, res) => {
   res.render("payment");
