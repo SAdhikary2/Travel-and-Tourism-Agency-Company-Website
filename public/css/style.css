@@ -351,7 +351,7 @@ video {
 #page1 p {
   font-size: 18px;
   font-weight: 500;
-  width: 40%;
+  width: 55%;
 }
 
 @media screen and (max-width: 1068px) {

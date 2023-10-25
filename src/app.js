@@ -169,6 +169,7 @@ app.post("/login", async (req, res) => {
         });
         res.locals.loggedIn = true; // Update the loggedIn status
         res.render("index"); // Render the index template
+       
       } else {
         res.send("Invalid credentials");
       }
@@ -193,12 +194,14 @@ app.post("/login", async (req, res) => {
 // }
 // });
 
+
+
 app.get('/logout', (req, res) => {
+  const currentPage = req.headers.referer || '/'; // Get the current page URL or set the default to '/'
   res.clearCookie('jwtCookies'); // Clear the jwtCookies cookie
   res.locals.loggedIn = false; // Update the loggedIn status
-  res.redirect('/login'); // Redirect to the login page
+  res.redirect(currentPage); // Redirect to the current page
 });
-
 
 
 
@@ -215,11 +218,14 @@ app.post("/signup", async (req, res) => {
     maxAge: 1800000, // 30 minutes in milliseconds
   });
   await newUser.save();
-  res.send(`<h1>You Have Register Successfully !!</h1>`);
+  res.render('login')
 });
 
 
 // **************************************for booking ***************************************
+
+
+
 app.post("/post", async (req, res) => {
   console.log("inside the post function");
   const data = new monmodel({
@@ -234,8 +240,12 @@ app.post("/post", async (req, res) => {
     specialRequest: req.body.specialRequest,
   });
   const val = await data.save();
-  res.send("booking successfull");
+  res.redirect('booking')
 });
+
+
+
+
 
 
 //FOR ADMIN PAGE DATA SHOWING
@@ -405,6 +415,10 @@ app.get("/booking", auth, (req, res) => {
 app.get("/payment", (req, res) => {
   res.render("payment");
 });
+
+
+
+
 
 //for error message
 app.get("*", (req, res) => {
