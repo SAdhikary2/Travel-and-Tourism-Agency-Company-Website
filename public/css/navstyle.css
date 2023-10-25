@@ -90,6 +90,21 @@
     font-weight: 700;
   }
 
+  .logout{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .logout:hover{
+    background-color: rgb(205, 10, 10);
+  }
+
   .buttonClass button:hover{
     background-color: rgb(205, 10, 10);
   }

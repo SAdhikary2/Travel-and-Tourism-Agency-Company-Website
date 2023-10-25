@@ -13,10 +13,13 @@ const auth = async (req, res, next) => {
         console.log(token);
         const verifyUser = jwt.verify(token, 'mynameissukalyanadhikaryiamasoftwareenginner');
         console.log(verifyUser);
+
+       
         next();
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         res.render('login')
+      
         
     }
 }

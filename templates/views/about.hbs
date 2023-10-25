@@ -107,6 +107,23 @@
   font-weight: 700;
   margin-left: 5px;
 }
+
+ .logout{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .logout:hover{
+    background-color: rgb(205, 10, 10);
+    color: white;
+  }
+
 .buttonClass button:hover{
     background-color: rgb(205, 10, 10);
   }
@@ -423,10 +440,17 @@
         <!-- </li> -->
       </ul>
       <!-- LOGIN PORTION  -->
-      <div class="login-section">
-        <a class="loginClass" class="login" href="/login">Log in </a>
-       <a class="buttonClass" href="/login"><button type="submit" >Sign up</button></a> 
-      </div>
+         <div class="login-section">
+  {{#if loggedIn}}
+    <form action="/logout" method="GET">
+      <a type="submit" class="logout">Log out</a>
+    </form>
+  {{else}}
+    <a class="loginClass" class="login" href="/login">Log in </a>
+    <a class="buttonClass" href="/signup"><button type="submit">Sign up</button></a> 
+  {{/if}}
+</div>
+
     </nav>
   <!-- NAVBER SECTION END -->
 

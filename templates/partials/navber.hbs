@@ -50,24 +50,7 @@
        
         
 
-        <!-- OTHERS BUTTON DROPDOWN  -->
-        {{!-- <li class="nav-item dropdown fw-bold">
-          <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            CONTACT
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdown">
-            <li class="nav-item dropdown"><a class="dropdown-item text-white fw-bold" href="/about">CO
-            </a>
-            </li>
-                 <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-white fw-bold" href="/contact">CONTACT US</a>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-white fw-bold" href="/blog">BLOGS</a>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-white fw-bold" href="#">VISA</a>
-            </li>
-          </ul>
-        </li> --}}
+    
 
 
 
@@ -77,9 +60,20 @@
         <!-- </li> -->
       </ul>
       <!-- LOGIN PORTION  -->
-      <div class="login-section">
+      {{!-- <div class="login-section">
         <a class="loginClass" class="login" href="/login">Log in </a>
        <a class="buttonClass" href="/signup"><button type="submit" >Sign up</button></a> 
-      </div>
+      </div> --}}
+      <div class="login-section">
+  {{#if loggedIn}}
+    <form action="/logout" method="GET">
+      <a type="submit" class="logout">Log out</a>
+    </form>
+  {{else}}
+    <a class="loginClass" class="login" href="/login">Log in </a>
+    <a class="buttonClass" href="/signup"><button type="submit">Sign up</button></a> 
+  {{/if}}
+</div>
+
     </nav>
   <!-- NAVBER SECTION END -->

@@ -70,7 +70,7 @@ userSchema.methods.generateAuthToken = async function () {
 
     return token;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 //registration bcryption middleware
@@ -81,15 +81,67 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
-
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;
 
-//handle login form
+//HANDLING THE LOGIN PORTION HERE
+// app.use(function(req, res, next) {
+//   res.locals.loggedIn = false; // Set the default value to false
+//   next();
+// });
+
+// app.post("/login", async (req, res) => {
+//   const { loginname, loginpassword } = req.body;
+//   if (loginname === "admin") {
+//     const adminPassword = "A@1234"; // replace with your actual admin password
+//     if (loginpassword === adminPassword) {
+//       res.redirect("admin");
+//     } else {
+//       res.send("Invalid admin credentials");
+//     }
+//   } else {
+//     const user = await User.findOne({ username: loginname });
+//     if (user) {
+//       const isMatch = await bcryptjs.compare(loginpassword, user.password);
+//      //token genaration during login
+//       const token = await user.generateAuthToken();
+//       res.cookie("jwtCookies", token, {
+//         httpOnly: true,
+//         maxAge: 1800000, // 30 minutes in milliseconds
+//       });
+//       if (isMatch) {
+//         res.locals.loggedIn = true; 
+//         res.render("index");
+
+      
+//       } else {
+//         res.send("Invalid credentials");
+//       }
+//     } else {
+//       res.send("This is wrong number");
+//     }
+//   }
+// });
+
+//HANDLING THE LOGIN PORTION
+app.use(function(req, res, next) {
+  res.locals.loggedIn = false; // Set the default value to false
+  const token = req.cookies.jwtCookies; // Extract the JWT token from the cookies
+  if (token) {
+    try {
+      // const verifyUser = jwt.verify(token, 'mynameissukalyanadhikaryiamasoftwareenginner'); // Verify the token
+      res.locals.loggedIn = true; // Set loggedIn to true if the token is valid
+    } catch (error) {
+      // console.error(error.message);
+    }
+  }
+  next();
+});
+
+
+
 app.post("/login", async (req, res) => {
   const { loginname, loginpassword } = req.body;
-
   if (loginname === "admin") {
     const adminPassword = "A@1234"; // replace with your actual admin password
     if (loginpassword === adminPassword) {
@@ -99,53 +151,73 @@ app.post("/login", async (req, res) => {
     }
   } else {
     const user = await User.findOne({ username: loginname });
-
     if (user) {
       const isMatch = await bcryptjs.compare(loginpassword, user.password);
-
-      //token genaration during login
-      const token = await user.generateAuthToken();
-
-      //cookie save into client device during login
+     //token genaration during login
+     
+   
       // res.cookie("jwtCookies", token, {
-      //   expires: new Date(Date.now() + 30 * 60 * 1000),
       //   httpOnly: true,
-      // });
-
-      res.cookie("jwtCookies", token, {
-        httpOnly: true,
-        maxAge: 1800000, // 30 minutes in milliseconds
-      });
-      // console.log(res.get('Set-Cookie'));
-
+      //   maxAge: 1800000, // 30 minutes in milliseconds
+      
+      // })
       if (isMatch) {
-        res.render("index");
+        const token = await user.generateAuthToken();
+        res.cookie("jwtCookies", token, {
+          httpOnly: true,
+          maxAge: 1800000, // 30 minutes in milliseconds
+        });
+        res.locals.loggedIn = true; // Update the loggedIn status
+        res.render("index"); // Render the index template
       } else {
         res.send("Invalid credentials");
       }
-    } else {
-      res.send("This is wrong number");
     }
-  }
+  };
 });
 
-// Handle registration form submissions
+
+
+// app.get('/logout',auth,async (req, res) => {
+// try{
+//   console.log(req.user1);
+//   res.user1.tokens=res.user1.tokens.filter((currElement) => {
+//         return currElement.token != req.token;
+//   })
+//   res.clearCookie('jwtCookies');
+//   console.log('logout successfully');
+//   await res.User.save();
+//   res.render('index');
+// }catch(error){
+//   console.log(error);
+// }
+// });
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('jwtCookies'); // Clear the jwtCookies cookie
+  res.locals.loggedIn = false; // Update the loggedIn status
+  res.redirect('/login'); // Redirect to the login page
+});
+
+
+
+
+
+// HANDLING THE REGISTRATION PORTION
 app.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   const newUser = new User({ username, email, password });
-
   //for generating authentication token during registration
   const token = await newUser.generateAuthToken();
-
   //creating cookies and save to the browser
   res.cookie("jwtCookies", token, {
     httpOnly: true,
     maxAge: 1800000, // 30 minutes in milliseconds
   });
-
   await newUser.save();
   res.send(`<h1>You Have Register Successfully !!</h1>`);
 });
+
 
 // **************************************for booking ***************************************
 app.post("/post", async (req, res) => {
@@ -162,9 +234,9 @@ app.post("/post", async (req, res) => {
     specialRequest: req.body.specialRequest,
   });
   const val = await data.save();
-  // res.json(val)
   res.send("booking successfull");
 });
+
 
 //FOR ADMIN PAGE DATA SHOWING
 app.get("/admin", async (req, res) => {
@@ -176,29 +248,26 @@ app.get("/admin", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
-// Delete a form
+// Delete a ADMIN DATA
 app.post("/admin/delete/:id", async (req, res) => {
   const { id } = req.params;
   await monmodel.findByIdAndDelete(id);
   res.redirect("/admin");
 });
-
 //to convert date into string
 hbs.registerHelper("date", function (value, format) {
   return moment(value).format(format);
 });
-
 //for serial number of data
 hbs.registerHelper("addOne", function (value) {
   return value + 1;
 });
 
+//FOR SENDING THE MAIL TO THE USER
 app.post("/admin/confirm/:id", async (req, res) => {
   const { id } = req.params;
   const form = await monmodel.findById(id);
   let userEmail = form.email;
-
   let transporter = nodemailer.createTransport({
     service: "gmail",
     secure: true,
@@ -210,7 +279,6 @@ app.post("/admin/confirm/:id", async (req, res) => {
       pass: process.env.PASSWORD,
     },
   });
-
   let mailOptions = {
     from: "sukalyanadhikary2021@gmail.com",
     to: userEmail,
@@ -248,105 +316,13 @@ app.post("/admin/confirm/:id", async (req, res) => {
     });
 });
 
-// app.post('/admin/confirm/:id', async (req, res) => {
-//     const { id } = req.params;
-//     const form = await monmodel.findById(id);
-//     let userEmail = form.email;
-
-//     let transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         secure: true,
-//         logger: true,
-//         debug: true,
-//         secureConnection: false,
-//         auth: {
-//             user: 'sukalyanadhikary2021@gmail.com',
-//             pass: 'xags uttu ezyk xchd'
-//         }
-//     });
-
-//     let mailOptions = {
-//         from: 'sukalyanadhikary2021@gmail.com',
-//         to: userEmail,
-//         subject: 'Confirmation Email',
-//         text: 'Your booking has been confirmed.'
-//     };
-
-//     transporter.sendMail(mailOptions)
-//         .then(async info => {
-//             console.log('mail sent successfully');
-//             // Update the status after sending the email
-//             await monmodel.findByIdAndUpdate(id, { status: 'Done' });
-//             res.redirect('/admin');
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             res.send('Error updating status');
-//         });
-// });
-
-// app.post('/admin/confirm/:id',async (req, res) => {
-//     // Retrieve the user's email from the database using the ID from the URL
-//     // This is just a placeholder and should be replaced with your actual code
-
-//     const { id } = req.params;
-//     const form = await monmodel.findById(id);
-//     let userEmail =form.email;
-
-//     let transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         // port:465,
-//         secure:true,
-//         logger:true,
-//         debug:true,
-//         secureConnection:false,
-//         auth: {
-//             user: 'sukalyanadhikary2021@gmail.com',
-//             pass: 'xags uttu ezyk xchd'
-//         }
-
-//     });
-
-//     let mailOptions = {
-//         from: 'sukalyanadhikary2021@gmail.com',
-//         to: userEmail,
-//         subject: 'Confirmation Email',
-//         text: 'Your booking has been confirmed.'
-//     };
-
-//     transporter.sendMail(mailOptions)
-//         .then(info => {
-//             console.log('mail sent successfully');
-//             // Your existing code to confirm the booking...
-//             res.send('mail sent successfully')
-//         })
-//         .catch(error => {
-//             console.log(error);
-//         });
-// });
-
 //FOR FORM SUBMISSION DATE
 app.post("/submit-form", (req, res) => {
   let formData = req.body;
-
   // Add the current date as the submission date
   formData.submissionDate = new Date();
-
-  // Save formData to database...
 });
-
-//FOR SETTING STATUS DONE
-// app.post('/admin/confirm/:id', (req, res) => {
-//     monmodel.findByIdAndUpdate(req.params.id, { status: 'Done' })
-//       .then(() => {
-//         res.redirect('/admin');
-
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         res.send('Error updating status');
-//       });
-//   });
+// ****************************BOOKING SECTION COMPLETE********************************
 
 //THIS IS INDEX PAGE
 app.get("/", (req, res) => {
@@ -354,6 +330,9 @@ app.get("/", (req, res) => {
     statename: "Log in",
   });
 });
+
+
+
 
 //INDIAN DESTINATION ROUTING
 app.get("/andaman", (req, res) => {
@@ -396,7 +375,7 @@ app.get("/africa", (req, res) => {
 });
 
 //for login
-app.get("/login", (req, res) => {
+app.get("/login", auth, (req, res) => {
   res.render("login");
 });
 app.get("/signup", (req, res) => {
