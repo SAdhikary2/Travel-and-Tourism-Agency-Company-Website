@@ -19,6 +19,7 @@
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mongoose": "^7.6.1",
     "nexmo": "^2.9.1",

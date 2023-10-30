@@ -561,10 +561,10 @@
                 <p class="subscribe__copy">Subscribe to keep up with fresh news and exciting updates. We promise not to
                     spam you!</p>
             </div>
-            <div class="form">
-                <input type="email" class="form__email" placeholder="Enter your email address" />
-                <a href="#"><button class="form__button">Subscribe</button></a>
-            </div>
+            <form class="form" action="/subscribe" method="POST">
+  <input type="email" name="email" class="form__email" placeholder="Enter your email address" required />
+  <button type="submit" class="form__button">Subscribe</button>
+</form>
         </div>
     </div>
 

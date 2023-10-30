@@ -1,112 +1,70 @@
 var data= {
     chatinit:{
-        title: ["Hello <span class='emoji'> &#128075;</span>","I am Mr. ExploreHelper","How can I help you?"],
-        options: ["Tourist Spot","Travel News","Live View ","Music <span class='emoji'> &#127925;</span>"]
+        title: ["Hello <span class='emoji'> &#128075;</span>","I am ExploreHelper","How can I help you?"],
+        options: ["TravelSpot ","Blog Related to Travel","Travel Acessories","Others"]
     },
-    movies: {
+    travelspot: {
         title:["Please select category"],
-        options:['Hollywood','Bollywood','Web Series','Others'],
+        options:['IndianDestination and Guidance','InternationalDestination and Guidance','Honeymoon Places','Trending Places'],
         url : {
             
         }
     },
     
-    news: {
-        title:["Today's Top 5 Headlines"],
-        options:["The rare green comet will make its closest pass of Earth between February 1 and February 2, according to NASA.","The rare green comet will make its closest pass of Earth between February 1 and February 2, according to NASA.","The rare green comet will make its closest pass of Earth between February 1 and February 2, according to NASA."],
+    blog: {
+        title:["Top Trending Article and Blog Which Help you Lot For Your Travel"],
+        options:["Best places To Visit in India In August","Most Beautiful Islands In The Maldives:A Visual Journey","Exploring The Best Shooping Destination In Singapore","Ultimate Guide To Shooping In Vietnam: Top 10 Destinations and Insider Tips","A Culinary Adventure In Ladakh: Must-Try Dishes For Every Foodie"],
         url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos"]
+            more:"http://localhost:5000/blog#https://wanderon.in/blogs/local-food-in-leh-ladakh",
+            link:["https://www.fabhotels.com/blog/places-to-visit-in-august/","https://traveltriangle.com/blog/biyadhoo-island/","https://traveltriangle.com/blog/malls-in-singapore/","https://traveltriangle.com/blog/vietnam-shopping/","https://tripnme.com/blogs/a-culinary-adventure-in-ladakh/"]
         }
     },
-    shopping: {
-        title:["Thanks for your response","Welcome to shopping zone <span class='emoji'> &#128090;</span>","Please select one of the below options to proceed further"],
-        options:['Electronics','Beauty products','Mobiles','Men Fashion','Women fashion'],
+    travel: {
+      
+        title:["These Are The Some Travel Accessories That Will Help You Too Much ...",'Travel Languages','Travel Adapters and Converters','Packing Cubes and Organizers','Travel Neck Pillows and Eye Masks','Portable Chargers and Power Banks',"Travel Toiletry Kits and Bags","Travel Wallets and Document Organizers","Travel-Sized Toiletries and Hygiene Products","Travel Umbrellas and Rain Gear","Travel Safety Locks and Security Devices","Travel First Aid Kits","Foldable Travel Hangers and Laundry Accessories","Travel-Friendly Water Bottles and Filter Systems","Travel Guides and Language Translation Devices","Travel-Ready Cookware and Eating Utensils","Travel-Size Sewing Kits and Repair Tools","Travel-Friendly Reading Materials and Entertainment"],
         url : {
             
         }
     },
-    electronics: {
-        title:["Thanks for your response","Here are some electronic items for you","Click on it to know more"],
-        options:['Televisions','Cameras','Gaming Consoles','Headphones','Speakers'],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#","#"]
-        }
-    },
-    beauty: {
-        title:["Thanks for your response","Here are some beauty products for you","Click on it to know more"],
-        options:['Make-up & Nails','Skin Care','Fragrance','Hair care'],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#"]
-        }
-    },
-    mobiles: {
-        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
-        options:['Mobile Phones','Cases & Covers','Power Banks','Tablets'],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#"]
-        }
-    },
-    men: {
-        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
-        options:['Clothing','Shirts','T-shirts','Innerwear','Jeans'],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#","#"]
-        }
-    },
-    women: {
-        title:["Thanks for your response","These are some results based on your input","Click on it to know more"],
-        options:['Clothing','Western Wear','Ethnic Wear','Top Brands'],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#"]
-        }
-    },
-    music: {
-        title:["These are some latest songs <span class='emoji'> &#127925;</span>"],
-        options: ["song 1","song 2","song 3","song 4","song 5"],
-        url : {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos","https://www.youtube.com/@webhub/videos"]
-        }
-    },
-    hollywood: {
-        title: ["Thanks for your response","Here are some genre based movies"],
-        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+   
+   
+    indiandestination: {
+        title: ["Thanks for your response","Here are some famous Indian Destinations and The Proper Guidance How To Go There.."],
+        options: ["Andaman","Kerala","Kashmir","Gujrat","Shimla","Goa","Agra","Rajasthan","Varanashi","Ooty"],
         url: {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#","#"]
+            more:"https://www.youtube.com/",
+            link:["https://youtu.be/rxw2Kc-uRjk?si=dsn6zxAl6cPkgn9y","https://youtu.be/yLE5bDX7M3Y?si=TOohYFz3U0AGUOMe","https://youtu.be/qmGYnJgCW1o?si=7pS6dnpbtP6hTofv","https://youtu.be/ZxALiRqtwpA?si=nOgso8GfA-RFt57u","https://youtu.be/f-oDL-fZAic?si=MQ731xLHhT_1yLyd","https://youtu.be/jYLXQWVpDYk?si=BhJ1eyqldlxfhfuX","https://youtu.be/NnGszBSiRxk?si=dSTbUunSB-wVGYS1","https://youtu.be/mf-t5oivaY8?si=UYdugoT_bVmR9FZA","https://youtu.be/vx2JKK3nP6I?si=FQPg2nmTUpecMnJq","https://youtu.be/Osi_BGVCv_I?si=HYmmofWeV8M1kRZ0"]
         }
     },
-    bollywood: {
-        title: ["Thanks for your response","Here are some genre based movies"],
-        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+    internationaldestination: {
+        title: ["Thanks for your response","Here Are The Some Famous International Destination And Guidance"],
+        options: ["Australia","America","Canada","Africa","Europe","Paris","Rome","Spain","Singapore"],
         url: {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#","#"]
+            more:"https://www.youtube.com/",
+            link:["https://youtu.be/tYfD7teA65w?si=2KDXQ-EM57lmbnK2","https://youtu.be/hepaEWujDrI?si=wSVh7O7jUn11SFwv","https://youtu.be/ctrSCEiYo1A?si=y8Z7rQ6CBBCUV_sL","https://youtu.be/oGChCx0xsSs?si=kofZv0MIw899EhEN","https://youtu.be/7-d9GHbeGfw?si=Jcc2RRYmd65suRo5","https://youtu.be/vrXONXSxJWE?si=chofVx7SGf2_eUtu","https://youtu.be/5DcA4BePBdA?si=qOJiZ1dfyNPCzA0g","https://youtu.be/myoNlbXG2RI?si=d-OT30huFRzBZk2i","https://youtu.be/XSDqXSVt3BE?si=P6yWjZdT7VeBoFfU"]
         }
     },
-    web: {
-        title: ["Thanks for your response","Here are some genre based web series"],
-        options: ["Comedy","Horror","Sci-Fi","Romance","Action"],
+    honeymoon: {
+        title: ["Thanks for your response","Here Are The Best Honeymoon Place Suggestion For Couple And The Proper Guidance"],
+        options: ["Bora Bora","St.Lucia","Fiji","Maldives","Bali","Santorini","Lakshadweep"],
         url: {
-            more:"https://www.youtube.com/@webhub/videos",
-            link:["#","#","#","#","#"]
+            more:"https://www.youtube.com/",
+            link:["https://youtu.be/gSudm8JWvlQ?si=u5ajBA29yfgLFYuz","https://youtu.be/ljKKIKUfn-Y?si=uRlI6fJeh7RtxJ8R","https://youtu.be/JRaakIL-N_s?si=N3IYL_jER4vHcrfY","https://youtu.be/g-eGMxPzYYQ?si=bGLIhryMS9K7NlLZ","https://youtu.be/-dbVN_Z2iIU?si=ZrmrteS9Hssy6mba","https://youtu.be/125nMc_Nz8s?si=isNaTGjC9yWIVzYm","https://youtu.be/e7cAsFSrbKc?si=6ZQHzBosdoIh3kfr"]
         }
     },
+    // "Customer Supports","Tips and Advice","Etiquette and Cultural Sensitivity","Sustainable Travel Practices"
     others: {
         title: ["Here are some more options for you"],
-        options: ["YouTube","Netflix","Amazon Prime","Hot Star"],
+        options: ["Customer Supports","Tips and Advice","Etiquette and Cultural Sensitivity","Sustainable Travel Practices"],
         url: {
             more:"https://www.youtube.com/",
             link:["#","#","#","#","#"]
         }
     },
+
+  
 }
+
 
 document.getElementById("init").addEventListener("click",showChatBot);
 var cbot= document.getElementById("chat-box");

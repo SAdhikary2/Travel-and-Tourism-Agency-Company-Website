@@ -23,3 +23,5 @@ const bookingSchema =new mongoose.Schema({
 // Create a model from the schema
 const monmodel = mongoose.model('BOOKING', bookingSchema);
 module.exports=monmodel;
+
+

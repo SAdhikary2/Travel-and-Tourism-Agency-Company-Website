@@ -73,59 +73,59 @@ document
           switch (searchQuery.toLowerCase()) {
             case "austrelia":
               window.location.href =
-                "International Holiday/Austrelia Tour.html?query=austrelia";
+                "/austrelia?query=austrelia";
               break;
 
             case "canada":
               window.location.href =
-                "International Holiday/Canada Tour.html?query=canada";
+                "/canada?query=canada";
               break;
 
               case "europe":
               window.location.href =
-                "International Holiday/Europe Tour.html?query=canada";
+                "/europe?query=canada";
               break;
 
               case "south africa":
               window.location.href =
-                "International Holiday/South Africa Tour.html?query=canada";
+                "/south africa?query=canada";
               break;
 
               case "america":
               window.location.href =
-                "International Holiday/America Tour Package.html?query=canada";
+                "/america?query=canada";
               break;
 
               // Indian Holiday 
               case "andaman":
                 window.location.href =
-                  "Indian Holiday/Andaman Tour Package.html?query=canada";
+                  "/andaman?query=canada";
                 break;
             
                 case "gujrat":
                   window.location.href =
-                    "Indian Holiday/Gujarat Tour Package.html?query=canada";
+                    "/gujrat?query=canada";
                   break;
 
                   case "jammu":
                     window.location.href =
-                      "Indian Holiday/Jammu And kashmir Tour.html?query=canada";
+                      "/jammu?query=canada";
                     break;
 
                     case "kasmir":
                       window.location.href =
-                        "Indian Holiday/Jammu And kashmir Tour.html?query=canada";
+                        "/kasmir?query=canada";
                       break;
 
                       case "kerala":
                         window.location.href =
-                          "Indian Holiday/Kerala_tour.html?query=canada";
+                          "/kerala?query=canada";
                         break;
 
                         
                         case "rajasthan":
                           window.location.href =
-                            "Indian Holiday/Rajasthan Tour Packages.html?query=canada";
+                            "/rajasthan?query=canada";
                           break;
 
                   

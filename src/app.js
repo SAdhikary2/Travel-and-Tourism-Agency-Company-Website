@@ -402,10 +402,54 @@ app.get("/nearbyPlaces", (req, res) => {
 //others page
 app.get("/contact", (req, res) => {
   res.render("contact");
+//CONNECTING TO THE DATABASE
+const contactdataSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  message: String
+});
+
+const Contactdata = mongoose.model('Contactdata', contactdataSchema);
+
+app.post('/contact', (req, res) => {
+  const newContactdata = new Contactdata({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  });
+
+  newContactdata.save()
+  .then(() => {
+    res.render('contact');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+});
+
+
 });
 app.get("/blog", (req, res) => {
   res.render("blog");
 });
+
+const Subscriber = mongoose.model('Subscriber', new mongoose.Schema({
+  email: String,
+  subscribed: Boolean
+}));
+
+app.post('/subscribe', (req, res) => {
+  const subscriber = new Subscriber({
+    email: req.body.email,
+    subscribed: true
+  });
+
+  subscriber.save()
+    .then(() => res.render('blog'))
+    .catch(err => console.log(err));
+});
+
 
 //before going to the booking page authentication check
 app.get("/booking", auth, (req, res) => {
@@ -419,38 +463,69 @@ app.get("/payment", (req, res) => {
 app.get("/contactInfo", (req, res) => {
   res.render("contactInfo");
 });
+//index page contact form
+// const contactSchema = new mongoose.Schema({
+//   full_name: String,
+//   email: String,
+//   phone_number: Number,
+//   date: { type: Date, default: Date.now }
+// });
 
-//THIS FOR THE SUBSCRIBE SECTION
-app.get("/subcribe", (req, res) => {
-  res.render("subcribe");
-});
-
-const SubscriberSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  }
-});
-
-// Compile model from schema
-const Subscriber = mongoose.model('Subscriber', SubscriberSchema);
-
-app.post('/subscribe', (req, res) => {
-  // Check if email is provided
-  if (!req.body.email) {
-    return res.status(400).send('Email is required');
-  }
-
-  const subscriber = new Subscriber({ email: req.body.email });
-
-  subscriber.save()
-    .then(() => res.send('Email saved successfully!'))
-    .catch((error) => res.send('Failed to save email. Error: ' + error));
+const contactSchema = new mongoose.Schema({
+  full_name: String,
+  email: String,
+  phone_number: Number,
+  date: { type: String, default: () => {
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    return `${date}-${month}-${year}`;
+  }}
 });
 
 
+const Contact =mongoose.model('Contact', contactSchema);
 
+app.post('/submit', (req, res) => {
+  const newContact = new Contact({
+    full_name: req.body.full_name,
+    email: req.body.email,
+    phone_number: req.body.phone_number
+  });
+
+  newContact.save()
+  .then(() => {
+    // res.send('Successfully added a new user.');
+    res.redirect('/')
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+});
+
+app.get('/contactdata', (req, res) => {
+  Contact.find({}).then(users => {
+    res.render('contactdata', { users: users });
+  }).catch(err => {
+    console.log(err);
+  });
+});
+
+//for delete
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
+app.delete('/contactdata/:id', (req, res) => {
+  Contact.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect('/contactdata');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 
 
