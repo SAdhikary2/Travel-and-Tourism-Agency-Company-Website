@@ -485,10 +485,17 @@
       <h3>Know More</h3>
       <p>To know More About Travel Subcribe us And Stay Updated </p>
       <fieldset class="fixed_flex">
-        <div class="subcribe-sec">
-        <input type="email" name="newsletter" placeholder="Your Email Address">
-        <button class="btn btn_2">Subscribe</button>
-      </div>
+        {{!-- <div action="/subscribe" method="post" class="subcribe-sec">
+        <input type="email" name="subcribe" placeholder="Your Email Address">
+        <button type="submit" class="btn btn_2">Subscribe</button>
+      </div> --}}
+      <div class="subscribe-sec">
+  <form action="/subscribe" method="POST">
+    <input type="email" name="subscribe" placeholder="Your Email Address" required>
+    <button type="submit" class="btn btn_2">Subscribe</button>
+  </form>
+</div>
+
       </fieldset>
     </section>
   </div>

@@ -13,6 +13,7 @@ const auth = async (req, res, next) => {
         console.log(token);
         const verifyUser = jwt.verify(token, 'mynameissukalyanadhikaryiamasoftwareenginner');
         console.log(verifyUser);
+        
 
        
         next();

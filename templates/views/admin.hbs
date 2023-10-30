@@ -13,6 +13,12 @@
 
 
     <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         h1 {
             text-align: center;
             font-size: 3vw;
@@ -131,6 +137,31 @@
                     font-weight:700 ;
                      color: red;
                 }
+
+        
+            }
+
+            .header{
+                height: 70px;
+                width: 100%;
+                background: red;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 20px;
+            }
+            .header a{
+                height: 40px;
+                width: 100px;
+                background:black;
+               text-decoration: none;
+               color:white;
+               text-align: center;
+               font-size: 1.2rem;
+               font-weight: 500;
+               border-radius: 20px;
+               box-shadow: 3px 3px 3px grey;
+             
             }
     </style>
     
@@ -139,6 +170,10 @@
 <body>
 
     <div class="table-conatiner">
+        <div class="header">
+                   <a href="/subcribe">Subcribe</a>
+                    <a href="/contactInfo">Contact</a>
+        </div>
         <h1>Visitors Data</h1>
         <table>
             <tr>
@@ -182,6 +217,8 @@
             {{/each}}
         </table>
     </div>
+
+
 
 </body>
 

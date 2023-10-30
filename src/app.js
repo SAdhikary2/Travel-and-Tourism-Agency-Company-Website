@@ -385,7 +385,7 @@ app.get("/africa", (req, res) => {
 });
 
 //for login
-app.get("/login", auth, (req, res) => {
+app.get("/login", (req, res) => {
   res.render("login");
 });
 app.get("/signup", (req, res) => {
@@ -415,6 +415,41 @@ app.get("/booking", auth, (req, res) => {
 app.get("/payment", (req, res) => {
   res.render("payment");
 });
+
+app.get("/contactInfo", (req, res) => {
+  res.render("contactInfo");
+});
+
+//THIS FOR THE SUBSCRIBE SECTION
+app.get("/subcribe", (req, res) => {
+  res.render("subcribe");
+});
+
+const SubscriberSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  }
+});
+
+// Compile model from schema
+const Subscriber = mongoose.model('Subscriber', SubscriberSchema);
+
+app.post('/subscribe', (req, res) => {
+  // Check if email is provided
+  if (!req.body.email) {
+    return res.status(400).send('Email is required');
+  }
+
+  const subscriber = new Subscriber({ email: req.body.email });
+
+  subscriber.save()
+    .then(() => res.send('Email saved successfully!'))
+    .catch((error) => res.send('Failed to save email. Error: ' + error));
+});
+
+
 
 
 
