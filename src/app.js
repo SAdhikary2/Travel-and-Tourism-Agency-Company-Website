@@ -13,9 +13,12 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const auth = require("./auth");
+const methodOverride = require('method-override');
+
 
 const port = process.env.PORT || 3000;
 
+app.use(methodOverride('_method'));
 app.use(cookieParser()); //SETTINGS THE MIDDLE WARE FOR ACCESSING THE COOKIE
 
 // PATH
@@ -70,7 +73,7 @@ userSchema.methods.generateAuthToken = async function () {
 
     return token;
   } catch (error) {
-    // console.log(error);
+   
   }
 };
 //registration bcryption middleware
@@ -84,60 +87,18 @@ userSchema.pre("save", async function (next) {
 const User = mongoose.model("User", userSchema);
 module.exports = User;
 
-//HANDLING THE LOGIN PORTION HERE
-// app.use(function(req, res, next) {
-//   res.locals.loggedIn = false; // Set the default value to false
-//   next();
-// });
-
-// app.post("/login", async (req, res) => {
-//   const { loginname, loginpassword } = req.body;
-//   if (loginname === "admin") {
-//     const adminPassword = "A@1234"; // replace with your actual admin password
-//     if (loginpassword === adminPassword) {
-//       res.redirect("admin");
-//     } else {
-//       res.send("Invalid admin credentials");
-//     }
-//   } else {
-//     const user = await User.findOne({ username: loginname });
-//     if (user) {
-//       const isMatch = await bcryptjs.compare(loginpassword, user.password);
-//      //token genaration during login
-//       const token = await user.generateAuthToken();
-//       res.cookie("jwtCookies", token, {
-//         httpOnly: true,
-//         maxAge: 1800000, // 30 minutes in milliseconds
-//       });
-//       if (isMatch) {
-//         res.locals.loggedIn = true; 
-//         res.render("index");
-
-      
-//       } else {
-//         res.send("Invalid credentials");
-//       }
-//     } else {
-//       res.send("This is wrong number");
-//     }
-//   }
-// });
-
 //HANDLING THE LOGIN PORTION
 app.use(function(req, res, next) {
   res.locals.loggedIn = false; // Set the default value to false
   const token = req.cookies.jwtCookies; // Extract the JWT token from the cookies
   if (token) {
     try {
-      // const verifyUser = jwt.verify(token, 'mynameissukalyanadhikaryiamasoftwareenginner'); // Verify the token
       res.locals.loggedIn = true; // Set loggedIn to true if the token is valid
     } catch (error) {
-      // console.error(error.message);
     }
   }
   next();
 });
-
 
 
 app.post("/login", async (req, res) => {
@@ -153,14 +114,6 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ username: loginname });
     if (user) {
       const isMatch = await bcryptjs.compare(loginpassword, user.password);
-     //token genaration during login
-     
-   
-      // res.cookie("jwtCookies", token, {
-      //   httpOnly: true,
-      //   maxAge: 1800000, // 30 minutes in milliseconds
-      
-      // })
       if (isMatch) {
         const token = await user.generateAuthToken();
         res.cookie("jwtCookies", token, {
@@ -176,35 +129,13 @@ app.post("/login", async (req, res) => {
     }
   };
 });
-
-
-
-// app.get('/logout',auth,async (req, res) => {
-// try{
-//   console.log(req.user1);
-//   res.user1.tokens=res.user1.tokens.filter((currElement) => {
-//         return currElement.token != req.token;
-//   })
-//   res.clearCookie('jwtCookies');
-//   console.log('logout successfully');
-//   await res.User.save();
-//   res.render('index');
-// }catch(error){
-//   console.log(error);
-// }
-// });
-
-
-
+//FOR LOGOUT AND REDIRECT THE CURRENT PAGE
 app.get('/logout', (req, res) => {
   const currentPage = req.headers.referer || '/'; // Get the current page URL or set the default to '/'
   res.clearCookie('jwtCookies'); // Clear the jwtCookies cookie
   res.locals.loggedIn = false; // Update the loggedIn status
   res.redirect(currentPage); // Redirect to the current page
 });
-
-
-
 
 // HANDLING THE REGISTRATION PORTION
 app.post("/signup", async (req, res) => {
@@ -222,31 +153,50 @@ app.post("/signup", async (req, res) => {
 });
 
 
+
+
+
 // **************************************for booking ***************************************
-
-
-
 app.post("/post", async (req, res) => {
   console.log("inside the post function");
   const data = new monmodel({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     destination: req.body.destination,
-    // phoneNumber:req.body.phoneNumber,
+    phoneNumber:req.body.phoneNumber,
     email: req.body.email,
     numberOfGuests: req.body.numberOfGuests,
     checkInDate: req.body.checkInDate,
     checkOutDate: req.body.checkOutDate,
     specialRequest: req.body.specialRequest,
   });
-  const val = await data.save();
-  res.redirect('booking')
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
+        },
+});
+let mailOptions = {
+    from: 'sukalyanadhikary2021@gmail.com',
+    to: req.body.email,
+    subject: 'Booking Confirmation',
+    text: 'You have Booked Successfuly , Very soon you will receive a call , Stay alert', // plain text body
+};
+// Sending the email
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        console.log(error);
+        res.send('Error in sending email');
+    } else {
+        console.log('Email sent: ' + info.response);
+        res.send('Email sent successfully');
+    }
 });
 
-
-
-
-
+const val = await data.save();
+res.redirect('booking')
+});
 
 //FOR ADMIN PAGE DATA SHOWING
 app.get("/admin", async (req, res) => {
@@ -272,7 +222,6 @@ hbs.registerHelper("date", function (value, format) {
 hbs.registerHelper("addOne", function (value) {
   return value + 1;
 });
-
 //FOR SENDING THE MAIL TO THE USER
 app.post("/admin/confirm/:id", async (req, res) => {
   const { id } = req.params;
@@ -311,7 +260,6 @@ app.post("/admin/confirm/:id", async (req, res) => {
         The Explore Team</pre>
         `,
   };
-
   transporter
     .sendMail(mailOptions)
     .then(async (info) => {
@@ -334,16 +282,15 @@ app.post("/submit-form", (req, res) => {
 });
 // ****************************BOOKING SECTION COMPLETE********************************
 
+
+
+//ROUTING ALL PAGES 
 //THIS IS INDEX PAGE
 app.get("/", (req, res) => {
   res.render("index", {
     statename: "Log in",
   });
 });
-
-
-
-
 //INDIAN DESTINATION ROUTING
 app.get("/andaman", (req, res) => {
   res.render("andaman");
@@ -363,7 +310,6 @@ app.get("/rajasthan", (req, res) => {
 app.get("/kasmir", (req, res) => {
   res.render("jammu");
 });
-
 //INTERNATIONAL DESTINATION ROUTING
 app.get("/america", (req, res) => {
   res.render("america");
@@ -383,7 +329,6 @@ app.get("/about", (req, res) => {
 app.get("/africa", (req, res) => {
   res.render("africa");
 });
-
 //for login
 app.get("/login", (req, res) => {
   res.render("login");
@@ -391,33 +336,33 @@ app.get("/login", (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("login");
 });
-
 app.get("/chat", (req, res) => {
   res.render("chat");
 });
 app.get("/nearbyPlaces", (req, res) => {
   res.render("nearbyPlaces");
 });
-
 //others page
 app.get("/contact", (req, res) => {
   res.render("contact");
-//CONNECTING TO THE DATABASE
+});
+
+app.get("/contactinfo", (req, res) => {
+  res.render("contactinfo");
+});
+// //CONNECTING TO THE DATABASE
 const contactdataSchema = new mongoose.Schema({
   name: String,
   email: String,
   message: String
 });
-
 const Contactdata = mongoose.model('Contactdata', contactdataSchema);
-
 app.post('/contact', (req, res) => {
   const newContactdata = new Contactdata({
     name: req.body.name,
     email: req.body.email,
     message: req.body.message
   });
-
   newContactdata.save()
   .then(() => {
     res.render('contact');
@@ -425,26 +370,40 @@ app.post('/contact', (req, res) => {
   .catch((err) => {
     console.log(err);
   });
-
 });
+// //SHOW IN CONTACT US DATA IN CONTACTINFO PAGE
+// app.get('/contactinfo', (req, res) => {
+//   Contactdata.find({}).then(users2 => {
+//     res.render('contactinfo', { users2: users2 });
+//   }).catch(err => {
+//     console.log(err);
+//   });
+// });
+// //FOR DELETE CONTACTINFO PAGE DATA
+// app.delete('/contactinfo/:id', (req, res) => {
+//   Contactdata.findByIdAndRemove(req.params.id)
+//     .then(() => {
+//       res.redirect('/contactinfo');
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
-
-});
+//ROUTING PAGE
 app.get("/blog", (req, res) => {
   res.render("blog");
 });
-
+//SUBCRIBER BUTTON CONNECT TO THE DATABASE AND SAVING DATA TO THE DATABASE
 const Subscriber = mongoose.model('Subscriber', new mongoose.Schema({
   email: String,
   subscribed: Boolean
 }));
-
 app.post('/subscribe', (req, res) => {
   const subscriber = new Subscriber({
     email: req.body.email,
     subscribed: true
   });
-
   subscriber.save()
     .then(() => res.render('blog'))
     .catch(err => console.log(err));
@@ -455,22 +414,10 @@ app.post('/subscribe', (req, res) => {
 app.get("/booking", auth, (req, res) => {
   res.render("booking");
 });
-
-app.get("/payment", (req, res) => {
-  res.render("payment");
+// CONTACT DATA IN HOME PAGE
+app.get("/contactdata", (req, res) => {
+  res.render("contactdata");
 });
-
-app.get("/contactInfo", (req, res) => {
-  res.render("contactInfo");
-});
-//index page contact form
-// const contactSchema = new mongoose.Schema({
-//   full_name: String,
-//   email: String,
-//   phone_number: Number,
-//   date: { type: Date, default: Date.now }
-// });
-
 const contactSchema = new mongoose.Schema({
   full_name: String,
   email: String,
@@ -483,28 +430,22 @@ const contactSchema = new mongoose.Schema({
     return `${date}-${month}-${year}`;
   }}
 });
-
-
 const Contact =mongoose.model('Contact', contactSchema);
-
 app.post('/submit', (req, res) => {
   const newContact = new Contact({
     full_name: req.body.full_name,
     email: req.body.email,
     phone_number: req.body.phone_number
   });
-
   newContact.save()
   .then(() => {
-    // res.send('Successfully added a new user.');
     res.redirect('/')
   })
   .catch((err) => {
     console.log(err);
   });
-
 });
-
+//FOR SHOWING THIS HOME PAGE CONTACT DATA TO THE CONTACTDATA PAGE
 app.get('/contactdata', (req, res) => {
   Contact.find({}).then(users => {
     res.render('contactdata', { users: users });
@@ -512,11 +453,7 @@ app.get('/contactdata', (req, res) => {
     console.log(err);
   });
 });
-
 //for delete
-const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
-
 app.delete('/contactdata/:id', (req, res) => {
   Contact.findByIdAndRemove(req.params.id)
     .then(() => {
@@ -526,9 +463,6 @@ app.delete('/contactdata/:id', (req, res) => {
       console.log(err);
     });
 });
-
-
-
 
 //for error message
 app.get("*", (req, res) => {

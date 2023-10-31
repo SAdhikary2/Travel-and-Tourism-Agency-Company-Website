@@ -112,30 +112,36 @@
                      color: red;
                 }
 
-                td:nth-of-type(7):before {
-                    content: "Number of Guests : ";
+                  td:nth-of-type(7):before {
+                    content: "Phone : ";
                     font-weight:700 ;
                      color: red;
                 }
 
                 td:nth-of-type(8):before {
-                    content: "Check-in Date : ";
+                    content: "Number of Guests : ";
                     font-weight:700 ;
                      color: red;
                 }
 
                 td:nth-of-type(9):before {
-                    content: "Check-out Date : ";
+                    content: "Check-in Date : ";
                     font-weight:700 ;
                      color: red;
                 }
 
                 td:nth-of-type(10):before {
+                    content: "Check-out Date : ";
+                    font-weight:700 ;
+                     color: red;
+                }
+
+                td:nth-of-type(11):before {
                     content: "Special Request : ";
                     font-weight:700 ;
                      color: red;
                 }
-                  td:nth-of-type(11):before {
+                  td:nth-of-type(12):before {
                     content: "Status : ";
                     font-weight:700 ;
                      color: red;
@@ -208,6 +214,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Email</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Number of Guests</th>
                 <th scope="col">Check-in Date</th>
                 <th scope="col">Check-out Date</th>
@@ -228,6 +235,7 @@
                 <td>{{this.lastName}}</td>
                 <td>{{this.destination}}</td>
                 <td>{{this.email}}</td>
+                <td>{{this.phoneNumber}}</td>
                 <td>{{this.numberOfGuests}}</td>
                 <td>{{date this.checkInDate "DD-MM-YYYY"}}</td>
                 <td>{{date this.checkOutDate "DD-MM-YYYY"}}</td>
