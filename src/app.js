@@ -178,7 +178,7 @@ app.post("/post", async (req, res) => {
         },
 });
 let mailOptions = {
-    from: 'sukalyanadhikary2021@gmail.com',
+    from:process.env.EMAIL,
     to: req.body.email,
     subject: 'Booking Confirmation',
     text: 'You have Booked Successfuly , Very soon you will receive a call , Stay alert', // plain text body
@@ -239,7 +239,7 @@ app.post("/admin/confirm/:id", async (req, res) => {
     },
   });
   let mailOptions = {
-    from: "sukalyanadhikary2021@gmail.com",
+    from: process.env.EMAIL,
     to: userEmail,
     subject: "Confirmation Email",
     // text: 'Thank You for confirming us and you have successfully booked your destination. Please Pay '
