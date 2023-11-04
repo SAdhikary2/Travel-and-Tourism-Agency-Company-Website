@@ -371,24 +371,20 @@ app.post('/contact', (req, res) => {
     console.log(err);
   });
 });
-// //SHOW IN CONTACT US DATA IN CONTACTINFO PAGE
+
+
+
 // app.get('/contactinfo', (req, res) => {
-//   Contactdata.find({}).then(users2 => {
-//     res.render('contactinfo', { users2: users2 });
-//   }).catch(err => {
-//     console.log(err);
+//   Contactdata.find({}, (err, contactdata) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.render('contactinfo', { contactdata: contactdata });
+//     }
 //   });
 // });
-// //FOR DELETE CONTACTINFO PAGE DATA
-// app.delete('/contactinfo/:id', (req, res) => {
-//   Contactdata.findByIdAndRemove(req.params.id)
-//     .then(() => {
-//       res.redirect('/contactinfo');
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
+
+
 
 //ROUTING PAGE
 app.get("/blog", (req, res) => {
