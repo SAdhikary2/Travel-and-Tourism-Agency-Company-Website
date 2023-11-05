@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // MONGODB CONNECT
 mongoose
-  .connect("mongodb://127.0.0.1:27017/UserData", {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -193,7 +193,6 @@ transporter.sendMail(mailOptions, (error, info) => {
         res.send('Email sent successfully');
     }
 });
-
 const val = await data.save();
 res.redirect('booking')
 });
