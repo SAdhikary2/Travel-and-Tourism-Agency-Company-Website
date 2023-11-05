@@ -37,8 +37,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // MONGODB CONNECT
+// mongoose
+//   .connect(process.env.MONGO_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("connected successfully"))
+//   .catch((err) => console.error(err));
+
+const url = process.env.MONGO_URL;
+const dbName = process.env.DB_NAME;
+
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(`${url}/${dbName}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
