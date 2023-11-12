@@ -1,86 +1,97 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nearby Places</title>
-    <link rel="stylesheet" href="css/nearbyPlaces.css" />
-
-    {{! BOOTSTRAP CSS  }}
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-
-  </head>
-  <body>
-    <div class="container">
-      <br /><br />
-      <h1 class="text-center">
-        Nearby Places Center
-      </h1>
-
-      <div id="map"></div>
-      <div class="form-group">
-        <label for="location">Enter Location: </label>
-        <br />
-        <br />
-        <input
-          type="text"
-          class="form-control"
-          id="autocomplete"
-          placeholder="Enter Location"
-        />
-      </div>
-      <br />
-
-      <div class="form-group">
-        <label for="type">Select Place Type:</label>
-        <br />
-
-        <select name="placeTypes" id="type" class="form-control">
-          <option value="accounting">Accounting</option>
-          <option value="airport">Airport</option>
-          <option value="amusement_park">Amusement Park</option>
-          <option value="aquarium">Aquarium</option>
-          <option value="art_gallery">Art Gallery</option>
-          <!-- Add more options as needed -->
-        </select>
-
-      </div>
-
-      <br><br>
-
-      <table class="table table-bordered table-striped" id="places">
-
-      </table>
-
-    </div>
-
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlAtsKLkwS5J_awtFGZ3epCCUA8Q2RpwY&libraries=places&callback=initMap" async defer></script>
-
-<script>
-
-function initMap(){
-    autocomplete=new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
-    {
-        types:['geocode']
-    })
-
-    autocomplete.addListener('place_changed',searchNearbyPlaces)
-}
-
-function searchNearbyPlaces(){
-    document.getElementById('places').innerHTML=''
-    var place=autocomplete.getPlace()
-    console.log(place)
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Places Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #header {
+            background:rgb(68, 65, 65);
+            color: white;
+            padding: 10px;
+        }
+        #header h1 {
+            margin: 0;
+            text-align: center;
+        }
+        form {
+            margin: 30px 0;
+        }
+        form input, form textarea {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+            box-shadow: 2px 2px 2px grey;
+          
+        }
+        form button {
+            padding: 10px;
+            width: 100%;
+            background:red;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 2px 2px 2px grey;
+        }
+        #reviews {
+            margin: 20px 0;
+        }
+        #reviews li {
+            list-style: none;
+            padding: 10px;
+            border-bottom: 1px #ccc solid;
+        }
+        #reviews li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <h1> Reviews</h1>
+        </div>
+    </header>
     
-
-}
-
-
-</script>
-
-  </body>
+    <div class="container">
+        <form action="/nearbyPlaces" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" required></textarea>
+            
+            <button type="submit">Submit Review</button>
+        </form>
+        
+        <section id="reviews">
+            <h2>Recent Reviews</h2>
+            {{#if reviews.length}}
+                <ul>
+                    {{#each reviews}}
+                        <li>
+                            <strong style="color: red;">{{this.username}}</strong>: {{this.review}}
+                        </li>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <p>No reviews yet.</p>
+            {{/if}}
+        </section>
+    </div>
+</body>
 </html>

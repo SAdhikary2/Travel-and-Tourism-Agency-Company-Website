@@ -380,9 +380,9 @@ app.get("/signup", (req, res) => {
 app.get("/chat", (req, res) => {
   res.render("chat");
 });
-app.get("/nearbyPlaces", (req, res) => {
-  res.render("nearbyPlaces");
-});
+// app.get("/nearbyPlaces", (req, res) => {
+//   res.render("nearbyPlaces");
+// });
 //others page
 app.get("/contact", (req, res) => {
   res.render("contact");
@@ -523,6 +523,46 @@ app.delete('/contactdata/:id', (req, res) => {
     });
 });
 
+
+
+//Create a mongoose schema
+const reviewSchema = new mongoose.Schema({
+  username: String,
+  review: String,
+});
+
+const Review = mongoose.model('Review', reviewSchema);
+
+app.get('/nearbyPlaces', (req, res) => {
+  Review.find({})
+    .then(reviews => {
+      res.render('nearbyPlaces', { reviews: reviews });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send('An error occurred while fetching reviews');
+    });
+});
+
+
+
+app.post('/nearbyPlaces', (req, res) => {
+  const { username, review } = req.body;
+
+  // Create a new review and save it to the database
+  const newReview = new Review({ username, review });
+  newReview.save().then(() => {
+    res.redirect('/nearbyPlaces');
+  }).catch(err => {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  });
+});
+
+
+
+
+
 //for error message
 app.get("*", (req, res) => {
   res.render("error");
@@ -530,3 +570,11 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   console.log(`The port is listennig at ${port}`);
 });
+
+
+
+
+
+
+
+

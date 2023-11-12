@@ -322,3 +322,14 @@ small {
 svg {
   margin-left: 10px;
 }
+
+.btn{
+  width: 100%;
+  height: 50px;
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
