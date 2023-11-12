@@ -108,20 +108,46 @@ app.use(function(req, res, next) {
 });
 
 
+// app.post("/login", async (req, res) => {
+//   const { loginname, loginpassword } = req.body;
+//   if (loginname === "admin") {
+//     const adminPassword = "A@1234"; // replace with your actual admin password
+//     if (loginpassword === adminPassword) {
+//       res.redirect("admin");
+//     } else {
+//       res.send("Invalid admin credentials");
+//     }
+//   } else {
+//     const user = await User.findOne({ username: loginname });
+//     if (user) {
+//       const isMatch = await bcryptjs.compare(loginpassword, user.password);
+//       if (isMatch) {
+//         const token = await user.generateAuthToken();
+//         res.cookie("jwtCookies", token, {
+//           httpOnly: true,
+//           maxAge: 1800000, // 30 minutes in milliseconds
+//         });
+//         res.locals.loggedIn = true; // Update the loggedIn status
+//         res.render("index"); // Render the index template
+       
+//       } else {
+//         res.send("Invalid credentials");
+//       }
+//     }
+//   };
+// });
+
+
+
 app.post("/login", async (req, res) => {
   const { loginname, loginpassword } = req.body;
-  if (loginname === "admin") {
-    const adminPassword = "A@1234"; // replace with your actual admin password
-    if (loginpassword === adminPassword) {
-      res.redirect("admin");
-    } else {
-      res.send("Invalid admin credentials");
-    }
-  } else {
-    const user = await User.findOne({ username: loginname });
-    if (user) {
-      const isMatch = await bcryptjs.compare(loginpassword, user.password);
-      if (isMatch) {
+  const user = await User.findOne({ username: loginname });
+  if (user) {
+    const isMatch = await bcryptjs.compare(loginpassword, user.password);
+    if (isMatch) {
+      if (user.username === 'admin' && user.role === 'admin') {
+        res.redirect("admin");
+      } else {
         const token = await user.generateAuthToken();
         res.cookie("jwtCookies", token, {
           httpOnly: true,
@@ -129,13 +155,17 @@ app.post("/login", async (req, res) => {
         });
         res.locals.loggedIn = true; // Update the loggedIn status
         res.render("index"); // Render the index template
-       
-      } else {
-        res.send("Invalid credentials");
       }
+    } else {
+      res.send("Invalid credentials");
     }
-  };
+  } else {
+    res.send("User not found");
+  }
 });
+
+
+
 //FOR LOGOUT AND REDIRECT THE CURRENT PAGE
 app.get('/logout', (req, res) => {
   const currentPage = req.headers.referer || '/'; // Get the current page URL or set the default to '/'
@@ -159,7 +189,7 @@ app.post("/signup", async (req, res) => {
   res.render('login')
 });
 
-
+//SHOWING THE USER DATA IN USER PAGE
 app.get("/user", async (req, res) => {
   const users = await User.find({});
   res.render("user", { users });
@@ -171,8 +201,8 @@ app.get("/edit/:id", async (req, res) => {
 });
 
 app.post("/edit/:id", async (req, res) => {
-  const { username, email, password } = req.body;
-  await User.findByIdAndUpdate(req.params.id, { username, email, password });
+  const { username, email, role} = req.body;
+  await User.findByIdAndUpdate(req.params.id, { username, email, role });
   res.redirect("/user");
 });
 

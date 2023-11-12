@@ -20,7 +20,7 @@ tr:nth-child(even) {
 }
 
 th {
-  background-color: red;
+  background-color: rgb(77, 73, 73);
   color: white;
 }
 
@@ -46,6 +46,7 @@ th {
     <tr>
       <th>Username</th>
       <th>Email</th>
+       <th>Role</th>
       <th>Edit</th>
     </tr>
   </thead>
@@ -54,6 +55,7 @@ th {
     <tr>
       <td>{{this.username}}</td>
       <td>{{this.email}}</td>
+      <td>{{this.role}}</td>
       <td><a href="/edit/{{this._id}}" class="edit-btn">Edit</a></td>
     </tr>
     {{/each}}
