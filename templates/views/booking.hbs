@@ -14,7 +14,7 @@
         <p>Travel Booking Form</p>
 
 
-        <form action="/post" method="post" >
+        <form id="FormId" action="/post" method="post" >
             <div class="flex">
                 <div class="user-box">
                     <input required="" name="firstName" type="text">
@@ -72,5 +72,14 @@
         </form>
     
     </div>
+
+
+    <script>
+        window.onbeforeunload = function() {
+    // Clear the form data
+    document.getElementById("FormId").reset();
+};
+
+    </script>
 </body>
 </html>

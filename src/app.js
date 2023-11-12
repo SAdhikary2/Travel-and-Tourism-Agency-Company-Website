@@ -192,7 +192,7 @@ let mailOptions = {
     from:process.env.EMAIL,
     to: req.body.email,
     subject: 'Booking Confirmation',
-    text: 'You have Booked Successfuly , Very soon you will receive a call , Stay alert', // plain text body
+    text: `Dear ${req.body.firstName},\n\nYou have Booked Successfully ${req.body.destination} tour for ${req.body.numberOfGuests} peoples. \nVery soon you will receive a call for your confirmation and payment.\n\n\n\n\n\n\nStay alert , Stay Updated. \nExplore Teams`, // plain text body
 };
 // Sending the email
 transporter.sendMail(mailOptions, (error, info) => {
@@ -205,8 +205,12 @@ transporter.sendMail(mailOptions, (error, info) => {
     }
 });
 const val = await data.save();
-res.redirect('booking')
+res.redirect('success')
 });
+
+app.get('/success',(req,res)=>{
+  res.render('success')
+})
 
 //FOR ADMIN PAGE DATA SHOWING
 app.get("/admin", async (req, res) => {
@@ -252,23 +256,15 @@ app.post("/admin/confirm/:id", async (req, res) => {
     from: process.env.EMAIL,
     to: userEmail,
     subject: "Confirmation Email",
-    // text: 'Thank You for confirming us and you have successfully booked your destination. Please Pay '
-    html: `<h1>Welcome to Explore</h1><pre>Thank you for confirming your destination and welcome to Explore!
-
-        We’re thrilled to have you on board. At Explore, we’re committed to helping you discover new experiences and adventures.
+  text:`Welcome to EXPLORE !\n\nThank you for confirming your destination\nWe’re thrilled to have you on board. At Explore, we’re committed to helping you discover new experiences and adventures.
         
-        Here are a few things you can do next:
-        
-        Check out our latest adventures and experiences on our website.
-        Connect with us on social media for updates and special offers.
-        If you have any questions or need assistance, don’t hesitate to reach out to our support team.
-        Remember, the world is full of amazing things waiting to be explored. Let’s start this journey together!
-        
-        <u><b><l>Pay on this upi sukalyan8317@axl</l></b></u>
-
-        Best regards, 
-        The Explore Team</pre>
-        `,
+  Here are a few things you can do next:
+  
+  Check out our latest adventures and experiences on our website.
+  Connect with us on social media for updates and special offers.
+  If you have any questions or need assistance, don’t hesitate to reach out to our support team.
+  Remember, the world is full of amazing things waiting to be explored. Let’s start this journey together!\n\n\n\nPlese pay your price using this link\nhttps://drive.google.com/file/d/1anrPw1dCMQJ8nmizV812VAMHwbrFgQ6u/view\n\n\n\nBest reagrds,\nThe EXPLORE team.
+  `
   };
   transporter
     .sendMail(mailOptions)
