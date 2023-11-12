@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
+  role: {
+    type: String,
+    default: "user",
+  },
   tokens: [
     {
       token: {
@@ -155,34 +159,6 @@ app.post("/signup", async (req, res) => {
   res.render('login')
 });
 
-//SHOW USER IN USER.HBS PAGE
-// app.get('/user', (req, res) => {
-//   User.find({}).then((Reg) => {
-//     res.render('user', { Reg: Reg });
-//   }).catch(err => console.log(err));
-// });
-
-// //FOR DELETE
-// app.delete('/user/:id', (req, res) => {
-//   User.findByIdAndRemove(req.params.id)
-//     .then(() => {
-//       res.redirect('/user');
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
-
-// //FOR EDIT
-// app.post("/user/:id", async (req, res) => {
-//   // const userId = req.body.userId;
-//   // Get the new data from the request
-//   const { username, email } = req.body;
-//   // Find the user and update their data
-//   const user = await User.findByIdAndUpdate(req.params.id, { username, email }, { new: true });
-//   // Redirect to the user page or wherever you want
-//   res.redirect(`/user/${userId}`);
-// });
 
 app.get("/user", async (req, res) => {
   const users = await User.find({});
