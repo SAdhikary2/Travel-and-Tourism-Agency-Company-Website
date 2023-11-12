@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Contact Info Form</h1>
-    <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,10 +20,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/contactdata">Contact Data</a>
+         <li class="nav-item">
+          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/admin">Admin</a>
         </li>
-       
+        <li class="nav-item">
+          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/contactdata">Interested</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/Subscribers">Subscribers</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/contactdata">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white " style="font-weight: 600;" aria-current="page" href="/contactinfo">Contact</a>
+        </li>
         
        
       </ul>
@@ -40,13 +42,14 @@
   </div>
 </nav>
 
+
     <div class="table-responsive mt-5">
-        <h1 class="text-center fs-30">User Want To Plan</h1>
+       
  <table class="table table-striped table-bordered container  align-bottom">
   <thead class="table-danger">
     <tr class="align-middle">
-         <th scope="col">Date</th>
-     
+         
+     <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Message</th>
       <th scope="col">Action</th>
@@ -54,14 +57,14 @@
     </tr>
   </thead>
   <tbody>
-    {{#each contactdata }}
+    {{#each user1 }}
       <tr>
-          <td>{{this.date }}</td>
+         
         <td>{{this.name}}</td>
         <td>{{this.email}}</td>
         <td>{{this.message}}</td>
         <td>
-      <form action="/contactdata/{{this._id}}?_method=DELETE" method="POST">
+      <form action="/contactinfo/{{this._id}}?_method=DELETE" method="POST">
         <button class="bg-danger text-white" type="submit">Delete</button>
       </form>
     </td>
@@ -73,7 +76,5 @@
     </div>
    
 
-</body>
-</html>
 </body>
 </html>

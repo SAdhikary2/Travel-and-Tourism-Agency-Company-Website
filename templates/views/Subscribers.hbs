@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="container-fluid">
     <a class="navbar-brand" style="font-size: 30px; color:red; font-weight:700" href="/">Explore</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,27 +44,28 @@
 
 
     <div class="table-responsive mt-5">
-        <h1 class="text-center fs-30">User Want To Plan</h1>
+       
  <table class="table table-striped table-bordered container  align-bottom">
   <thead class="table-danger">
     <tr class="align-middle">
-         <th scope="col">Date</th>
-      <th scope="col">Full Name</th>
+         
+     
       <th scope="col">Email</th>
-      <th scope="col">Phone Number</th>
+      <th scope="col">Subscribed</th>
       <th scope="col">Action</th>
+      
      
     </tr>
   </thead>
   <tbody>
-    {{#each users}}
+    {{#each subscribers }}
       <tr>
-          <td>{{this.date }}</td>
-        <td>{{this.full_name}}</td>
+         
+        
         <td>{{this.email}}</td>
-        <td>{{this.phone_number}}</td>
+        <td>{{this.subscribed}}</td>
         <td>
-      <form action="/contactdata/{{this._id}}?_method=DELETE" method="POST">
+      <form action="/Subscribers/{{this._id}}?_method=DELETE" method="POST">
         <button class="bg-danger text-white" type="submit">Delete</button>
       </form>
     </td>

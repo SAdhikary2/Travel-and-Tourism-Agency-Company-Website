@@ -36,15 +36,7 @@ app.use(express.static(staticPath));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// MONGODB CONNECT
-// mongoose
-//   .connect(process.env.MONGO_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("connected successfully"))
-//   .catch((err) => console.error(err));
-
+//MongoDB connection
 const url = process.env.MONGO_URL;
 const dbName = process.env.DB_NAME;
 
@@ -163,7 +155,50 @@ app.post("/signup", async (req, res) => {
   res.render('login')
 });
 
+//SHOW USER IN USER.HBS PAGE
+// app.get('/user', (req, res) => {
+//   User.find({}).then((Reg) => {
+//     res.render('user', { Reg: Reg });
+//   }).catch(err => console.log(err));
+// });
 
+// //FOR DELETE
+// app.delete('/user/:id', (req, res) => {
+//   User.findByIdAndRemove(req.params.id)
+//     .then(() => {
+//       res.redirect('/user');
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
+
+// //FOR EDIT
+// app.post("/user/:id", async (req, res) => {
+//   // const userId = req.body.userId;
+//   // Get the new data from the request
+//   const { username, email } = req.body;
+//   // Find the user and update their data
+//   const user = await User.findByIdAndUpdate(req.params.id, { username, email }, { new: true });
+//   // Redirect to the user page or wherever you want
+//   res.redirect(`/user/${userId}`);
+// });
+
+app.get("/user", async (req, res) => {
+  const users = await User.find({});
+  res.render("user", { users });
+});
+
+app.get("/edit/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.render("edit", { user });
+});
+
+app.post("/edit/:id", async (req, res) => {
+  const { username, email, password } = req.body;
+  await User.findByIdAndUpdate(req.params.id, { username, email, password });
+  res.redirect("/user");
+});
 
 
 
@@ -353,17 +388,15 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-app.get("/contactinfo", (req, res) => {
-  res.render("contactinfo");
-});
-// //CONNECTING TO THE DATABASE
+//CONTACT US PAGE
+//CONNECTING TO THE DATABASE
 const contactdataSchema = new mongoose.Schema({
   name: String,
   email: String,
   message: String
 });
 const Contactdata = mongoose.model('Contactdata', contactdataSchema);
-app.post('/contact', (req, res) => {
+app.post('/submit', (req, res) => {
   const newContactdata = new Contactdata({
     name: req.body.name,
     email: req.body.email,
@@ -378,17 +411,26 @@ app.post('/contact', (req, res) => {
   });
 });
 
+app.get('/contactinfo', (req, res) => {
+  Contactdata.find({}).then(user1 => {
+    res.render('contactinfo', { user1: user1 });
+  }).catch(err => {
+    console.log(err);
+  });
+});
+//for delete
+app.delete('/contactinfo/:id', (req, res) => {
+  Contactdata.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect('/contactinfo');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 
-// app.get('/contactinfo', (req, res) => {
-//   Contactdata.find({}, (err, contactdata) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.render('contactinfo', { contactdata: contactdata });
-//     }
-//   });
-// });
+
 
 
 
@@ -396,7 +438,7 @@ app.post('/contact', (req, res) => {
 app.get("/blog", (req, res) => {
   res.render("blog");
 });
-//SUBCRIBER BUTTON CONNECT TO THE DATABASE AND SAVING DATA TO THE DATABASE
+
 const Subscriber = mongoose.model('Subscriber', new mongoose.Schema({
   email: String,
   subscribed: Boolean
@@ -410,6 +452,24 @@ app.post('/subscribe', (req, res) => {
     .then(() => res.render('blog'))
     .catch(err => console.log(err));
 });
+// to data in page
+app.get('/subscribers', (req, res) => {
+  Subscriber.find({}).then((subscribers) => {
+    res.render('subscribers', { subscribers: subscribers });
+  }).catch(err => console.log(err));
+});
+
+//for delete
+app.delete('/Subscribers/:id', (req, res) => {
+  Subscriber.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect('/subscribers');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 
 
 //before going to the booking page authentication check
@@ -417,9 +477,6 @@ app.get("/booking", auth, (req, res) => {
   res.render("booking");
 });
 // CONTACT DATA IN HOME PAGE
-app.get("/contactdata", (req, res) => {
-  res.render("contactdata");
-});
 const contactSchema = new mongoose.Schema({
   full_name: String,
   email: String,
