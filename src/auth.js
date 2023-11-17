@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 
 const express = require('express');
 const app = express();
@@ -11,10 +11,10 @@ const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwtCookies;
         console.log(token);
-        const verifyUser = jwt.verify(token, 'mynameissukalyanadhikaryiamasoftwareenginner');
+        const verifyUser = jwt.verify(token, process.env.SECRET);
         console.log(verifyUser);
        
-
+       
        
         next();
     } catch (error) {
@@ -24,7 +24,6 @@ const auth = async (req, res, next) => {
         
     }
 }
-
 
 
 module.exports = auth;

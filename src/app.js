@@ -13,12 +13,11 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const auth = require("./auth");
-const methodOverride = require('method-override');
-
+const methodOverride = require("method-override");
 
 const port = process.env.PORT || 3000;
 
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 app.use(cookieParser()); //SETTINGS THE MIDDLE WARE FOR ACCESSING THE COOKIE
 
 // PATH
@@ -79,9 +78,7 @@ userSchema.methods.generateAuthToken = async function () {
     await this.save();
 
     return token;
-  } catch (error) {
-   
-  }
+  } catch (error) {}
 };
 //registration bcryption middleware
 userSchema.pre("save", async function (next) {
@@ -95,18 +92,16 @@ const User = mongoose.model("User", userSchema);
 module.exports = User;
 
 //HANDLING THE LOGIN PORTION
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.loggedIn = false; // Set the default value to false
   const token = req.cookies.jwtCookies; // Extract the JWT token from the cookies
   if (token) {
     try {
       res.locals.loggedIn = true; // Set loggedIn to true if the token is valid
-    } catch (error) {
-    }
+    } catch (error) {}
   }
   next();
 });
-
 
 // app.post("/login", async (req, res) => {
 //   const { loginname, loginpassword } = req.body;
@@ -129,7 +124,7 @@ app.use(function(req, res, next) {
 //         });
 //         res.locals.loggedIn = true; // Update the loggedIn status
 //         res.render("index"); // Render the index template
-       
+
 //       } else {
 //         res.send("Invalid credentials");
 //       }
@@ -137,15 +132,13 @@ app.use(function(req, res, next) {
 //   };
 // });
 
-
-
 app.post("/login", async (req, res) => {
   const { loginname, loginpassword } = req.body;
   const user = await User.findOne({ username: loginname });
   if (user) {
     const isMatch = await bcryptjs.compare(loginpassword, user.password);
     if (isMatch) {
-      if (user.username === 'admin' && user.role === 'admin') {
+      if (user.username === "admin" && user.role === "admin") {
         res.redirect("admin");
       } else {
         const token = await user.generateAuthToken();
@@ -164,14 +157,13 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
-
 //FOR LOGOUT AND REDIRECT THE CURRENT PAGE
-app.get('/logout', (req, res) => {
-  const currentPage = req.headers.referer || '/'; // Get the current page URL or set the default to '/'
-  res.clearCookie('jwtCookies'); // Clear the jwtCookies cookie
+app.get("/logout", (req, res) => {
+  const currentPage = req.headers.referer || "/"; // Get the current page URL or set the default to '/'
+  res.clearCookie("jwtCookies"); // Clear the jwtCookies cookie
   res.locals.loggedIn = false; // Update the loggedIn status
   res.redirect(currentPage); // Redirect to the current page
+  // res.render('index')
 });
 
 // HANDLING THE REGISTRATION PORTION
@@ -186,7 +178,7 @@ app.post("/signup", async (req, res) => {
     maxAge: 1800000, // 30 minutes in milliseconds
   });
   await newUser.save();
-  res.render('login')
+  res.render("login");
 });
 
 //SHOWING THE USER DATA IN USER PAGE
@@ -201,12 +193,10 @@ app.get("/edit/:id", async (req, res) => {
 });
 
 app.post("/edit/:id", async (req, res) => {
-  const { username, email, role} = req.body;
+  const { username, email, role } = req.body;
   await User.findByIdAndUpdate(req.params.id, { username, email, role });
   res.redirect("/user");
 });
-
-
 
 // **************************************for booking ***************************************
 app.post("/post", async (req, res) => {
@@ -215,7 +205,7 @@ app.post("/post", async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     destination: req.body.destination,
-    phoneNumber:req.body.phoneNumber,
+    phoneNumber: req.body.phoneNumber,
     email: req.body.email,
     numberOfGuests: req.body.numberOfGuests,
     checkInDate: req.body.checkInDate,
@@ -223,35 +213,35 @@ app.post("/post", async (req, res) => {
     specialRequest: req.body.specialRequest,
   });
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-});
-let mailOptions = {
-    from:process.env.EMAIL,
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+  let mailOptions = {
+    from: process.env.EMAIL,
     to: req.body.email,
-    subject: 'Booking Confirmation',
+    subject: "Booking Confirmation",
     text: `Dear ${req.body.firstName},\n\nYou have Booked Successfully ${req.body.destination} tour for ${req.body.numberOfGuests} peoples. \nVery soon you will receive a call for your confirmation and payment.\n\n\n\n\n\n\nStay alert , Stay Updated. \nExplore Teams`, // plain text body
-};
-// Sending the email
-transporter.sendMail(mailOptions, (error, info) => {
+  };
+  // Sending the email
+  transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-        console.log(error);
-        res.send('Error in sending email');
+      console.log(error);
+      res.send("Error in sending email");
     } else {
-        console.log('Email sent: ' + info.response);
-        res.send('Email sent successfully');
+      console.log("Email sent: " + info.response);
+      res.send("Email sent successfully");
     }
-});
-const val = await data.save();
-res.redirect('success')
+  });
+  const val = await data.save();
+  res.redirect("success");
 });
 
-app.get('/success',(req,res)=>{
-  res.render('success')
-})
+app.get("/success", (req, res) => {
+  res.render("success");
+});
 
 //FOR ADMIN PAGE DATA SHOWING
 app.get("/admin", async (req, res) => {
@@ -297,15 +287,15 @@ app.post("/admin/confirm/:id", async (req, res) => {
     from: process.env.EMAIL,
     to: userEmail,
     subject: "Confirmation Email",
-  text:`Welcome to EXPLORE !\n\nThank you for confirming your destination\nWe’re thrilled to have you on board. At Explore, we’re committed to helping you discover new experiences and adventures.
+    text: `Welcome to EXPLORE !\n\nThank you for confirming your destination\nWe’re thrilled to have you on board. At Explore, we’re committed to helping you discover new experiences and adventures.
         
   Here are a few things you can do next:
   
   Check out our latest adventures and experiences on our website.
   Connect with us on social media for updates and special offers.
   If you have any questions or need assistance, don’t hesitate to reach out to our support team.
-  Remember, the world is full of amazing things waiting to be explored. Let’s start this journey together!\n\n\n\nPlese pay your price using this link\nhttps://drive.google.com/file/d/1anrPw1dCMQJ8nmizV812VAMHwbrFgQ6u/view\n\n\n\nBest reagrds,\nThe EXPLORE team.
-  `
+  Remember, the world is full of amazing things waiting to be explored. Let’s start this journey together!\n\n\n\nPlese pay your price using this link\n${process.env.PAY}\n\n\n\nBest reagrds,\nThe EXPLORE team.
+  `,
   };
   transporter
     .sendMail(mailOptions)
@@ -329,9 +319,7 @@ app.post("/submit-form", (req, res) => {
 });
 // ****************************BOOKING SECTION COMPLETE********************************
 
-
-
-//ROUTING ALL PAGES 
+//ROUTING ALL PAGES
 //THIS IS INDEX PAGE
 app.get("/", (req, res) => {
   res.render("index", {
@@ -399,84 +387,86 @@ app.get("/contact", (req, res) => {
 const contactdataSchema = new mongoose.Schema({
   name: String,
   email: String,
-  message: String
+  message: String,
 });
-const Contactdata = mongoose.model('Contactdata', contactdataSchema);
-app.post('/submit', (req, res) => {
+const Contactdata = mongoose.model("Contactdata", contactdataSchema);
+app.post("/submit", (req, res) => {
   const newContactdata = new Contactdata({
     name: req.body.name,
     email: req.body.email,
-    message: req.body.message
+    message: req.body.message,
   });
-  newContactdata.save()
-  .then(() => {
-    res.render('contact');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-});
-
-app.get('/contactinfo', (req, res) => {
-  Contactdata.find({}).then(user1 => {
-    res.render('contactinfo', { user1: user1 });
-  }).catch(err => {
-    console.log(err);
-  });
-});
-//for delete
-app.delete('/contactinfo/:id', (req, res) => {
-  Contactdata.findByIdAndRemove(req.params.id)
+  newContactdata
+    .save()
     .then(() => {
-      res.redirect('/contactinfo');
+      res.render("contact");
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
 
-
-
-
-
+app.get("/contactinfo", (req, res) => {
+  Contactdata.find({})
+    .then((user1) => {
+      res.render("contactinfo", { user1: user1 });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+//for delete
+app.delete("/contactinfo/:id", (req, res) => {
+  Contactdata.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect("/contactinfo");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //ROUTING PAGE
 app.get("/blog", (req, res) => {
   res.render("blog");
 });
 
-const Subscriber = mongoose.model('Subscriber', new mongoose.Schema({
-  email: String,
-  subscribed: Boolean
-}));
-app.post('/subscribe', (req, res) => {
+const Subscriber = mongoose.model(
+  "Subscriber",
+  new mongoose.Schema({
+    email: String,
+    subscribed: Boolean,
+  })
+);
+app.post("/subscribe", (req, res) => {
   const subscriber = new Subscriber({
     email: req.body.email,
-    subscribed: true
+    subscribed: true,
   });
-  subscriber.save()
-    .then(() => res.render('blog'))
-    .catch(err => console.log(err));
+  subscriber
+    .save()
+    .then(() => res.render("blog"))
+    .catch((err) => console.log(err));
 });
 // to data in page
-app.get('/subscribers', (req, res) => {
-  Subscriber.find({}).then((subscribers) => {
-    res.render('subscribers', { subscribers: subscribers });
-  }).catch(err => console.log(err));
+app.get("/subscribers", (req, res) => {
+  Subscriber.find({})
+    .then((subscribers) => {
+      res.render("subscribers", { subscribers: subscribers });
+    })
+    .catch((err) => console.log(err));
 });
 
 //for delete
-app.delete('/Subscribers/:id', (req, res) => {
+app.delete("/Subscribers/:id", (req, res) => {
   Subscriber.findByIdAndRemove(req.params.id)
     .then(() => {
-      res.redirect('/subscribers');
+      res.redirect("/subscribers");
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
-
-
 
 //before going to the booking page authentication check
 app.get("/booking", auth, (req, res) => {
@@ -487,49 +477,53 @@ const contactSchema = new mongoose.Schema({
   full_name: String,
   email: String,
   phone_number: Number,
-  date: { type: String, default: () => {
-    let date_ob = new Date();
-    let date = ("0" + date_ob.getDate()).slice(-2);
-    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    let year = date_ob.getFullYear();
-    return `${date}-${month}-${year}`;
-  }}
+  date: {
+    type: String,
+    default: () => {
+      let date_ob = new Date();
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      let year = date_ob.getFullYear();
+      return `${date}-${month}-${year}`;
+    },
+  },
 });
-const Contact =mongoose.model('Contact', contactSchema);
-app.post('/submit', (req, res) => {
+const Contact = mongoose.model("Contact", contactSchema);
+app.post("/submit", (req, res) => {
   const newContact = new Contact({
     full_name: req.body.full_name,
     email: req.body.email,
-    phone_number: req.body.phone_number
+    phone_number: req.body.phone_number,
   });
-  newContact.save()
-  .then(() => {
-    res.redirect('/')
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-});
-//FOR SHOWING THIS HOME PAGE CONTACT DATA TO THE CONTACTDATA PAGE
-app.get('/contactdata', (req, res) => {
-  Contact.find({}).then(users => {
-    res.render('contactdata', { users: users });
-  }).catch(err => {
-    console.log(err);
-  });
-});
-//for delete
-app.delete('/contactdata/:id', (req, res) => {
-  Contact.findByIdAndRemove(req.params.id)
+  newContact
+    .save()
     .then(() => {
-      res.redirect('/contactdata');
+      res.redirect("/");
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 });
-
-
+//FOR SHOWING THIS HOME PAGE CONTACT DATA TO THE CONTACTDATA PAGE
+app.get("/contactdata", (req, res) => {
+  Contact.find({})
+    .then((users) => {
+      res.render("contactdata", { users: users });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+//for delete
+app.delete("/contactdata/:id", (req, res) => {
+  Contact.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect("/contactdata");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //Create a mongoose schema
 const reviewSchema = new mongoose.Schema({
@@ -537,37 +531,34 @@ const reviewSchema = new mongoose.Schema({
   review: String,
 });
 
-const Review = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model("Review", reviewSchema);
 
-app.get('/nearbyPlaces', (req, res) => {
+app.get("/nearbyPlaces", (req, res) => {
   Review.find({})
-    .then(reviews => {
-      res.render('nearbyPlaces', { reviews: reviews });
+    .then((reviews) => {
+      res.render("nearbyPlaces", { reviews: reviews });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
-      res.status(500).send('An error occurred while fetching reviews');
+      res.status(500).send("An error occurred while fetching reviews");
     });
 });
 
-
-
-app.post('/nearbyPlaces', (req, res) => {
+app.post("/nearbyPlaces", (req, res) => {
   const { username, review } = req.body;
 
   // Create a new review and save it to the database
   const newReview = new Review({ username, review });
-  newReview.save().then(() => {
-    res.redirect('/nearbyPlaces');
-  }).catch(err => {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  });
+  newReview
+    .save()
+    .then(() => {
+      res.redirect("/nearbyPlaces");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
-
-
-
-
 
 //for error message
 app.get("*", (req, res) => {
@@ -576,11 +567,3 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   console.log(`The port is listennig at ${port}`);
 });
-
-
-
-
-
-
-
-
