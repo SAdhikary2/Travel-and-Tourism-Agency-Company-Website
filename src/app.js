@@ -91,6 +91,51 @@ userSchema.pre("save", async function (next) {
 const User = mongoose.model("User", userSchema);
 module.exports = User;
 
+
+
+app.post("/login", async (req, res) => {
+  const { loginname, loginpassword } = req.body;
+  if (loginname === "admin") {
+    const adminPassword = "A@1234"; // replace with your actual admin password
+    if (loginpassword === adminPassword) {
+      res.redirect("admin");
+    } else {
+      res.send("Invalid admin credentials");
+    }
+  } else {
+    const user = await User.findOne({ username: loginname });
+    if (user) {
+      const isMatch = await bcryptjs.compare(loginpassword, user.password);
+      if (isMatch) {
+        const token = await user.generateAuthToken();
+        res.cookie("jwtCookies", token, {
+          httpOnly: true,
+          maxAge: 1800000, // 30 minutes in milliseconds
+        });
+        res.locals.loggedIn = true; // Update the loggedIn status
+        res.render("index"); // Render the index template
+
+      } else {
+        res.send("Invalid credentials");
+      }
+    }
+  };
+});
+
+
+
+//FOR ADMIN PAGE DATA SHOWING
+app.get("/admin", async (req, res) => {
+  try {
+    const formData = await monmodel.find();
+    res.render("admin", { formData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 //HANDLING THE LOGIN PORTION
 app.use(function (req, res, next) {
   res.locals.loggedIn = false; // Set the default value to false
@@ -103,20 +148,16 @@ app.use(function (req, res, next) {
   next();
 });
 
+
 // app.post("/login", async (req, res) => {
 //   const { loginname, loginpassword } = req.body;
-//   if (loginname === "admin") {
-//     const adminPassword = "A@1234"; // replace with your actual admin password
-//     if (loginpassword === adminPassword) {
-//       res.redirect("admin");
-//     } else {
-//       res.send("Invalid admin credentials");
-//     }
-//   } else {
-//     const user = await User.findOne({ username: loginname });
-//     if (user) {
-//       const isMatch = await bcryptjs.compare(loginpassword, user.password);
-//       if (isMatch) {
+//   const user = await User.findOne({ username: loginname });
+//   if (user) {
+//     const isMatch = await bcryptjs.compare(loginpassword, user.password);
+//     if (isMatch) {
+//       if (user.username === "admin") {
+//         res.render("admin");
+//       } else {
 //         const token = await user.generateAuthToken();
 //         res.cookie("jwtCookies", token, {
 //           httpOnly: true,
@@ -124,45 +165,21 @@ app.use(function (req, res, next) {
 //         });
 //         res.locals.loggedIn = true; // Update the loggedIn status
 //         res.render("index"); // Render the index template
-
-//       } else {
-//         res.send("Invalid credentials");
 //       }
+//     } else {
+//       res.send("Invalid credentials");
 //     }
-//   };
+//   } else {
+//     res.send("User not found");
+//   }
 // });
-
-app.post("/login", async (req, res) => {
-  const { loginname, loginpassword } = req.body;
-  const user = await User.findOne({ username: loginname });
-  if (user) {
-    const isMatch = await bcryptjs.compare(loginpassword, user.password);
-    if (isMatch) {
-      if (user.username === "admin" && user.role === "admin") {
-        res.redirect("admin");
-      } else {
-        const token = await user.generateAuthToken();
-        res.cookie("jwtCookies", token, {
-          httpOnly: true,
-          maxAge: 1800000, // 30 minutes in milliseconds
-        });
-        res.locals.loggedIn = true; // Update the loggedIn status
-        res.render("index"); // Render the index template
-      }
-    } else {
-      res.send("Invalid credentials");
-    }
-  } else {
-    res.send("User not found");
-  }
-});
 
 //FOR LOGOUT AND REDIRECT THE CURRENT PAGE
 app.get("/logout", (req, res) => {
-  const currentPage = req.headers.referer || "/"; // Get the current page URL or set the default to '/'
+  // const currentPage = req.headers.referer || "/"; // Get the current page URL or set the default to '/'
   res.clearCookie("jwtCookies"); // Clear the jwtCookies cookie
-  res.locals.loggedIn = false; // Update the loggedIn status
-  res.redirect(currentPage); // Redirect to the current page
+  // res.locals.loggedIn = false; // Update the loggedIn status
+  res.render('index'); // Redirect to the current page
   // res.render('index')
 });
 
@@ -243,16 +260,34 @@ app.get("/success", (req, res) => {
   res.render("success");
 });
 
-//FOR ADMIN PAGE DATA SHOWING
-app.get("/admin", async (req, res) => {
-  try {
-    const formData = await monmodel.find();
-    res.render("admin", { formData });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Internal Server Error");
-  }
-});
+
+
+
+// Middleware to check if user is admin
+// function isAdmin(req, res, next) {
+//   if (req.user && req.user.role === 'admin') {
+//     next();
+//   } else {
+//     res.status(403).render('login');
+//   }
+// }
+
+// app.get("/admin", isAdmin, async (req, res) => {
+//   try {
+//     const formData = await monmodel.find();
+//     res.render("admin", { formData });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
+
+
+
+
+
+
+
 // Delete a ADMIN DATA
 app.post("/admin/delete/:id", async (req, res) => {
   const { id } = req.params;
@@ -388,7 +423,7 @@ const contactdataSchema = new mongoose.Schema({
   message: String,
 });
 const Contactdata = mongoose.model("Contactdata", contactdataSchema);
-app.post("/submit", (req, res) => {
+app.post("/contact", (req, res) => {
   const newContactdata = new Contactdata({
     name: req.body.name,
     email: req.body.email,
