@@ -14,6 +14,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const auth = require("./auth");
 const methodOverride = require("method-override");
+const colors=require('colors');
 
 const port = process.env.PORT || 3000;
 
@@ -36,15 +37,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //MongoDB connection
-const url = process.env.MONGO_URL;
-const dbName = process.env.DB_NAME;
+// const url = process.env.MONGO_URL;
+// const dbName = process.env.DB_NAME;
 
 mongoose
-  .connect(`${url}/${dbName}`, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("connected successfully"))
+  .then(() => console.log("connected successfully".bgCyan.white))
   .catch((err) => console.error(err));
 
 // ******************************** For Login and Registration****************************
